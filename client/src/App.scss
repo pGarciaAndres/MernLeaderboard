@@ -1,3 +1,5 @@
+$backgroundColor: #282c34;
+
 .App {
   text-align: center;
 }
@@ -7,7 +9,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: $backgroundColor;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
