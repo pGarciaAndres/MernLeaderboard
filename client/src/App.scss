@@ -1,24 +1,683 @@
-$backgroundColor: #282c34;
+$darkBackground: #282c34;
+$greyBackground: #444954;
+$greenBackground: #4267b2;
+// BOXZONAZERO
+// $greenBackground: #396236;
+$lightBorderline: #e1e1e1;
+$athleteFormBackground: 'images/athleteFormBackground.jpg';
+$filterFormBackground: 'images/filterFormBackground.jpg';
+
+#root .ui.segment {
+  border: none;
+  border-radius: 0px;
+}
 
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: $backgroundColor;
+  background-color: $darkBackground;
   min-height: 100vh;
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: normal;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+/* Header */
+.header {
+  width: 100%;
+  .logo {
+    float: left;
+    margin: 2em 0 1em 1em;
+    width: 40%;
+    // BOXZONAZERO
+    // margin: 1em 0 1em 1em;
+    // width: 20%;
+    max-width: 5em;
+  }
+  button.menu {
+    float: right;
+    margin: 23px 5px;
+    background: transparent;
+    &:focus, &:hover {
+      background: transparent;
+    }
+    i {
+      font-size: 2.6em;
+    }
+  }
+  .adminLogin {
+    display: inline-flex;
+    float: right;
+    margin: 22px 0 0;
+    width: auto;
+    .adminButton {
+      display: inline-block;
+      width: 54px;
+      cursor: pointer;
+    }
+    .logout {
+      filter: invert(0.9);
+      margin-top: 9px;
+      width: 45px;
+    }
+    .input {
+      margin-top: 12px;
+      input {
+        font-size: 0.65em;
+        height: 37px;
+        width: 10em;
+      }
+    }
+    .pwdButton {
+      margin-top: 5px;
+      margin-left: -4em;
+      background: transparent !important;
+      &:enabled i {
+        color: $greenBackground;
+      }
+    }
+    .pwdButton:hover {
+      background: transparent;
+    }
+  }
+}
+
+/* Titleboard */
+.titleboard {
+  width: 100%;
+  position: relative;
+  text-align: left;
+  border-top: 1px solid $lightBorderline;
+  border-bottom: 1px solid $lightBorderline;
+  letter-spacing: 2px;
+  p {
+    display: inline-block;
+    padding: 0.5em 1em;
+  }
+}
+
+/* Controls */
+.controls {
+  height: 3.5em;
+  width: 100%;
+  background: $greenBackground;
+  border-bottom: 1px solid $lightBorderline;
+  .tournament {
+    float: left;
+    margin: 1.2em;
+    font-weight: 700;
+  }
+  .button.controlButton {
+    padding: .78571429em .78571429em .78571429em;
+    float: right;
+    margin: 0.55em 0.3em;
+    font-size: 85%;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+  }
+  .active.button.controlButton {
+    background-color: #c0c1c2;
+    color: rgba(0, 0, 0, 0.95);
+  }
+  button {
+    &.add:hover, &.controlButton:focus {
+      background-color: transparent;
+      color: white;
+    }
+  }
+}
+
+/* Athlete Row */
+.athleteRow {
+  width: 100%;
+  max-height: 95px;
+  background: white;
+  color: black;
+  border-bottom: 1px solid lightgray;
+  .first {
+    float: left;
+    width: 2.5em;
+    margin-top: 0.4em;
+  }
+  .gender {
+    font-size: 1.6em;
+  }
+  .category {
+    padding-top: 0.15em;
+    padding-right: 0.3em;
+    font-size: .9em;
+    font-weight: bold;
+  }
+  .athlete {
+    float: left;
+    width: 65%;
+    text-align: left;
+    padding: 0.2em 0.4em 0.8em;
+    margin-top: 0.3em;
+    margin-bottom: 0.4em;
+    border-left: 1px solid $darkBackground;
+    .name {
+      font-size: 1.4em;
+      line-height: 1.1em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .comeFrom {
+      font-size: 0.6em;
+      line-height: 1em;
+    }
+  }
+  .ui.button.deleteButton {
+    float: right;
+    font-size: 75%;
+    padding: 1.28em;
+    margin: 0;
+    border-radius: 0;
+    border-left: 1px solid lightgray;
+    &:hover {
+      background: orangered;
+    }
+  }
+}
+
+/* Accordion Athlete Row */
+.accordionAthlete.mobile {
+  display: block;
+}
+.athleteRowHeader {
+  display: none;
+}
+.accordionAthlete.desktop {
+  display: none;
+}
+
+.accordionAthlete {
+  border-radius: 0 !important;
+  width: 100% !important;
+  .athlete {
+    text-align: left;
+    color: black !important;
+    padding: 0.75em 0.5em 0.5445em !important;
+    &:hover {
+      color: rgba(0, 0, 0, 0.4) !important;
+    }
+    .name {
+      display: inline-block;
+      width: 70%;
+      font-size: 1.4em;
+      line-height: 1.2em;
+      font-weight: normal;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .globalPoints {
+      float: right;
+      font-weight: 300;
+      font-size: medium;
+      font-style: italic;
+    }
+    .comeFrom {
+      margin-left: 6.65em;
+      font-size: 0.6em;
+      font-weight: 300;
+      line-height: 1.4em;
+    }
+    .scoreRow {
+      width: 2.5em;
+      float: left;
+      text-align: center;
+      margin: 0.3em 0;
+    }
+    .score {
+      font-size: xx-large;
+      font-weight: normal;
+      vertical-align: bottom;
+    }
+  }
+  .content {
+    text-align: left;
+    color: black !important;
+    padding: 0 !important;
+    .athleteScore-left {
+      float: left;
+      width: 30%;
+      height: 100%;
+      img {
+        width: 100%;
+        padding: 0;
+      }
+    }
+    .athleteScore-right {
+      float: right;
+      width: 70%;
+      border-bottom: 1px solid $lightBorderline;
+
+      .segments {
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        border-bottom: 0;
+        border-right: 0;
+        .firstCell {
+          flex: 0 1 auto;
+          font-weight: bold;
+        }
+        .editableCell {
+          cursor: pointer;
+          input {
+            border: none;
+            padding: 0;
+          }
+        }
+
+        .segment {
+          .editIcon {
+            float: right;
+            margin: 0em .3em;
+            opacity: 0.5;
+            transition: opacity .2s;
+            font-size: 1.3em;
+          }
+          &:hover .editIcon {
+            opacity: 1;
+          }
+          .editConfirmIcon {
+            float: right;
+            background: transparent;
+            padding: 0;
+            &:enabled i {
+              color: $greenBackground;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Accordion Sidebar */
+.accordionTournaments {
+  float: left;
+  width: 100%;
+  color: white;
+  font-size: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  .title {
+    padding: 0 !important;
+  }
+}
+.accordionTournaments:last-child {
+  border-bottom: none;
+}
+.accordionWorkouts {
+  font-size: 16px;
+  margin: 0 0 1em 1.5em !important;
+  > .title {
+    i {
+      margin-right: 0.5em;
+      transition: transform .1s ease,opacity .1s ease,-webkit-transform .1s ease,margin .3s !important;
+    }
+    &:hover i {
+      margin-right: .8em !important;
+    }
+  }
+  .title {
+    padding-bottom: 1em !important;
+    .red {
+      color: red;
+      font-weight: 600;
+    }
+  }
+  .empty {
+    text-align: right;
+    margin-right: 1em;
+  }
+  .content.active {
+    padding: 0 !important;
+    .deleteTournament {
+      margin-left: 4em;
+    }
+  }
+}
+.accordionWod {
+  .content.active:not(.wodContent) {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .form.wod .content {
+    display: block;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-right: 0.3em;
+    margin-bottom: 0.5em;
+  }
+  .content.active {
+    padding-top: 0.2em !important;
+    padding-bottom: 1em !important;
+  }
+  .title {
+    text-align: right;
+    padding-right: 1em !important;
+    padding-bottom: 0.5em !important;
+    font-weight: 600;
+    transition: margin .3s;
+  }
+  > .title:hover {
+    margin-right: .5em;
+  }
+}
+
+/* Form */
+.ui.form {
+  div {
+    &.field, &.fields {
+      margin-bottom: 0.3em;
+    }
+    &.inline.fields {
+      margin: 1em 0 0.2em 0;
+    }
+  }
+  .field label {
+    color: #ffffff !important;
+    font-size: 1rem !important;
+    float: left;
+  }
+  input {
+    font-size: 1rem;
+  }
+  .createButton {
+    margin-top: 0.5em;
+    color: black;
+    width: 50%;
+    &:hover {
+      background: $greenBackground;
+      color: white;
+    }
+    &.disabled {
+      opacity: 0;
+    }
+  }
+  .message {
+    margin: 1em 1em 0 -1em;
+    .header {
+      padding: 0;
+    }
+  }
+  .iconForm {
+    width: 4em;
+    border-radius: 50%;
+    box-shadow: 0 0 0pt 3pt white;
+    background-color: white;
+  }
+}
+
+/* Athlete Form */
+.athleteForm {
+  width: 100%;
+  padding: 1em 2em;
+  background-image: url($athleteFormBackground);
+  background-size: cover;
+  background-position: 17%;
+  border-bottom: 1px solid lightgray;
+}
+
+/* Filter Form */
+.filterForm {
+  padding: 2em;
+  background-image: url($filterFormBackground);
+  background-size: cover;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+}
+
+/* Wod Form */
+.wodForm, 
+.tournamentForm {
+  .input input, textarea {
+    background: #1b1c1d !important;
+    color: white !important;
+    margin-left: -1em !important;
+    padding-right: 0em !important;
+  }
+  .input input:focus, textarea:focus {
+    background: #1b1c1d !important;
+    color: white !important;
+  }
+  .input {
+    width: 100%;
+    padding-right: 0.3em;
+    input:not(#a) {
+      text-align: right;
+      font-weight: normal;
+    }
+  }
+}
+.tournamentForm {
+  width: 90%;
+  float: right;
+  .input input:not(#a) {
+    text-align: left;
+  }
+  .input input::-webkit-inner-spin-button {
+    font-size: 2em;
+  }
+}
+
+/* Desktop */
+@media only screen and (min-width: 768px) {
+  .header {
+    padding: 0px 3.5%;
+    button.menu {
+      margin: 16px;
+      i {
+        font-size: 3.7em;
+      }
+    }
+    .adminLogin {
+      margin: 13px 0 0;
+      .adminButton {
+        width: 72px;
+      }
+      .logout {
+        width: 65px;
+        margin-top: 9px;
+        filter: invert(0.9);
+      }
+      .input {
+        margin-top: 20px;
+        input {
+          height: 42px;
+        }
+      }
+      .pwdButton {
+        margin-top: 10px;
+      }
+    }
+  }
+  
+  .ui.image.logo {
+    margin: 1.5em 0 0; 
+    max-width: 10em;
+    // BOXZONAZERO
+    // margin: 1em 0 0; 
+    // max-width: 4em;
+  }
+
+  .titleboard {
+    border-top: none;
+    padding: 0px 2%;
+    p {
+      padding: 0.5em 1em;
+    }
+  }
+  
+  .controls {
+    padding: 0px 2%;
+    height: 1.8em;
+    .tournament {
+      margin: 0.5em 1em;
+    }
+    .button.controlButton {
+      font-size: 50%;
+      margin: 0.3em 0.4em;
+      padding: .78571429em 1.6em .78571429em !important;
+    }
+  }
+
+  .athleteRowHeader {
+    height: 1em;
+    width: 100%;
+    background: $greyBackground;
+    border-bottom: 1px solid $lightBorderline;
+    .headerLeft {
+      width: 29%;
+      float: left;
+      text-align: left;
+      font-size: 0.5em;
+      font-weight: 600;
+      padding-top: 0.3em;
+      span {
+        &.rank {
+          padding: 0 1.8em;
+        }
+        &.athletes {
+          padding: 0 6em;
+        }
+        &.points {
+          padding: 0 2.7em;
+        }
+      }
+    }
+    
+    .headerRight {
+      color: white;
+      margin: 0 !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      font-weight: 600;
+      
+      .segment {
+        padding-top: 0.3em;
+        padding-bottom: 0;
+        &:first-child {
+          max-width: fit-content
+        }
+      }
+    }
+  }
+
+  .accordionAthlete.mobile {
+    display: none;
+  }
+  .athleteRowHeader {
+    display: block;
+  }
+  .accordionAthlete.desktop {
+    display: block;
+    background: #fff;
+    box-shadow: 0 1px 2px 0 rgba(34,36,38,.15), 0 0 0 1px rgba(34,36,38,.15);
+  }
+  
+  .athleteRow,
+  .accordionAthlete {
+    padding: 0px 0%;
+    max-height: 55px;
+    .first {
+      width: 1.5em;
+      margin-top: 0.1em;
+      margin-left: 1em;
+    }
+    .gender {
+      font-size: 1em;
+    }
+    .category {
+      font-size: .6em;
+    }
+    .athlete {
+      float: left;
+      width: 30%;
+      padding: 0em 0.4em 0.5em !important;
+      margin-top: 0.2em !important;
+      margin-bottom: 0.3em !important;
+      img {
+        float: left;
+        width: 50px;
+        border-radius: 50%;
+        margin-right: 0.2em;
+        margin-top: -0.15em;
+      }
+      .name {
+        font-size: 0.9em;
+        display: block;
+        width: auto;
+      }
+      .comeFrom {
+        font-size: 0.4em;
+        line-height: 1em;
+      }
+      .dropdown.icon {
+        display: none !important;
+      }
+      &:hover {
+        color: black !important;
+      }
+    }
+    .scores {
+      .segments {
+        color: black;
+        border: none !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        max-height: 55px;
+        .segment {
+          &.globalPoints {
+            font-size: medium;
+            font-style: italic;
+            max-width: fit-content;
+          }
+          &.editableCell {
+            padding: 0.5em 0 0;
+            span {
+              cursor: pointer;
+              font-style: italic;
+              vertical-align: -webkit-baseline-middle;
+            }
+            i.circular.icon:hover {
+              background: green;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    .ui.button.deleteButton {
+      font-size: 49%;
+      padding: 1em 3em;
+    }
+  }
+  
+  .athleteForm {
+    padding-left: 50%;
+    padding-right: 10%;
+  }
+  
+  .filterForm {
+    padding: 1em 10%;
+    .iconForm {
+      display: block;
+      margin: 0 auto;
+    }
+    .field {
+      width: 30%;
+      display: inline-block;
+      &:not(:last-child) {
+        margin-right: 2em !important;
+      }
+    }
+  }
 }

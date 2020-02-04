@@ -1,0 +1,73 @@
+[
+{
+    "id": 2,
+    "name": "OPEN 2019",
+    "active": false,
+    "workouts": [
+        {
+            "id": 1,
+            "name": "19.1",
+            "rx": "AMRAP<br/>10 minutes of:<br/>15 Thruster - 60/40kg<br/>18/15 Cal. Row",
+            "sc": "AMRAP<br/>10 minutes of:<br/>12 Thruster - 45/30kg<br/>18/15 Cal. Row"
+        },
+        {
+            "id": 2,
+            "name": "19.2",
+            "rx": "EMOM<br/>10 minutes of:<br/>10 Bar MuscleUp<br/>50 DU",
+            "sc": "EMOM<br/>10 minutes of:<br/>10 Bar PullUp<br/>100 SU"
+        },
+        {
+            "id": 3,
+            "name": "19.3",
+            "rx": "AMRAP<br/>5 minutes of:<br/>12 Squat Snatch - 90/60kg",
+            "sc": "AMRAP<br/>5 minutes of:<br/>12 Squat Snatch - 50/30kg"
+        },
+        {
+            "id": 4,
+            "name": "19.4",
+            "rx": "METCOM x3<br/>200m Run<br/>30 T2B<br/>20 Power Snatch - 50/35kg",
+            "sc": "METCOM x3<br/>200m Run<br/>30 KneesUp<br/>20 Power Snatch - 40/25kg"
+        }
+    ],
+    "participants": 10,
+    "leaderboard": [{
+        "id": 1,
+        "name": "Mathew Fraser",
+        "gender": "Men",
+        "age": "(18-35)",
+        "category": "Rx",
+        "from": "UNITED STATES" ,
+        "photo": "https://profilepicsbucket.crossfit.com/9e218-P153604_4-184.jpg",
+        "scores": [
+            { "id": 1, "points": "378" },
+            { "id": 2, "points": "16:28" },
+            { "id": 3, "points": "7:27" }
+        ]
+    },{
+        "id": 2,
+        "name": "B. Gudmundsson",
+        "gender": "Men",
+        "age": "(18-35)",
+        "category": "Rx",
+        "from": "ICELAND" ,
+        "photo": "https://profilepicsbucket.crossfit.com/4c5dc-P81616_4-184.jpg",
+        "scores": [
+            { "id": 1, "points": "399" },
+            { "id": 2, "points": "18:06" },
+            { "id": 3, "points": "8:29" }
+        ]
+    },{
+        "id": 3,
+        "name": "S. Sigmundsdottir",
+        "gender": "Women",
+        "age": "(18-35)",
+        "category": "Rx",
+        "from": "ICELAND" ,
+        "photo": "https://profilepicsbucket.crossfit.com/5bee0-P8859_7-184.jpg",
+        "scores": [
+            { "id": 1, "points": "350" },
+            { "id": 2, "points": "15:20" },
+            { "id": 3, "points": "6:59" }
+        ]
+    }]
+}]
