@@ -28,8 +28,9 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 .header {
   width: 100%;
   .logo {
+    position: absolute !important;
     float: left;
-    margin: 2em 0 1em 1em;
+    margin: 2em 0 1em 0.5em;
     width: 40%;
     // BOXZONAZERO
     // margin: 1em 0 1em 1em;
@@ -75,7 +76,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
       input {
         font-size: 0.65em;
         height: 37px;
-        width: 10em;
+        width: 9em;
       }
     }
     .pwdButton {
@@ -163,7 +164,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
     float: left;
     width: 65%;
     text-align: left;
-    padding: 0.2em 0.4em 0.8em;
+    padding: 0.2em 0.4em;
     margin-top: 0.3em;
     margin-bottom: 0.4em;
     border-left: 1px solid $darkBackground;
