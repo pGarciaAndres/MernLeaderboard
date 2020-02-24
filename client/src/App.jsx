@@ -4,7 +4,6 @@ import SidebarContent from './components/SidebarContent';
 import Header from './components/Header';
 import TitleBoard from './components/TitleBoard';
 import Leaderboard from './components/Leaderboard';
-import Controls from './components/Controls';
 import { Sidebar, Segment } from 'semantic-ui-react';
 import './App.scss';
 // Services
@@ -20,7 +19,6 @@ const customStyles = {
   }
 }
 Modal.setAppElement('#root')
-const createTournamentLabel = 'Create a new tournament'
 
 class App extends Component {
   constructor(props) {
@@ -31,7 +29,7 @@ class App extends Component {
       admin: false,
       sidebar: false,
       tournaments: [],
-      tournamentSelected: null
+      tournamentSelected: undefined
     }
   }
 
@@ -171,20 +169,10 @@ class App extends Component {
             />
             <TitleBoard />
 
-            {this.state.tournamentSelected && 
             <Leaderboard tournament={this.state.tournamentSelected} 
               handleUpdateTournament={this.handleUpdateTournament}
               admin={this.state.admin} 
-              resetFilter={this.state.resetFilter}/>}
-
-            {!this.state.tournamentSelected &&
-            <Controls 
-              tournament={createTournamentLabel}
-              active={false} 
-              filter={null}
-              handleAddAthlete={null} 
-              startCompetition={null}
-              admin={this.state.admin} />}
+              resetFilter={this.state.resetFilter}/>
           </div>
 
           <Modal isOpen={this.state.modalIsOpen}

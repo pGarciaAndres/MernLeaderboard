@@ -5,7 +5,7 @@ export default class AthleteRowWrapper extends Component {
     render() {
         return (
             <Fragment>
-                {this.props.leaderboard && this.props.leaderboard.map(athlete =>
+                {this.props.leaderboard.map(athlete =>
                     <AthleteRow 
                         admin={this.props.admin} 
                         key={athlete.id} 

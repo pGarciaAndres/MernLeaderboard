@@ -14,7 +14,7 @@ export default class Controls extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.tournament !== prevProps.tournament) {
+    if (this.props.title !== prevProps.title) {
       this.closeForms()
     }
   }
@@ -42,7 +42,7 @@ export default class Controls extends Component {
     return (
       <React.Fragment> 
         <div className="controls">
-          <div className="tournament">{this.props.tournament}</div>
+          <div className="tournament">{this.props.title}</div>
           {!this.props.active && 
           <React.Fragment>
             {/* Start (Admin) */}

@@ -15,7 +15,9 @@ app.use(tournamentsRouter);
 
 // Database
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://localhost:27017/boxzonazero`, { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(`mongodb://localhost:27017/boxzonazero`, { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(`mongodb+srv://mern-leaderboard:w3stbr00k0@tournaments-edn5q.mongodb.net/boxzonazero?retryWrites=true&w=majority`, { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(`mongodb+srv://mern-leaderboard:w3stbr00k0@tournaments-edn5q.mongodb.net/qubox?retryWrites=true&w=majority`, { useFindAndModify: false, useNewUrlParser: true, useUnifiedTopology: true });
 
 // Redirect all the requests to our frontend application
 if (process.env.NODE_ENV === 'production') {

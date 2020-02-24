@@ -7,42 +7,57 @@ import noPhotoFemale from '../images/noPhotoFemale.jpg'
 import LeaderboardUtils from './LeaderboardUtils'
 
 const utils = new LeaderboardUtils()
+const createTournamentLabel = 'Create a new tournament'
 
 export default class Leaderboard extends Component {
     constructor(props) {
         super(props)
         
-        this.state = {
-            active: this.props.tournament.active,
-            leaderboard: utils.initLeaderboard(this.props.tournament),
-            origin: this.props.tournament.leaderboard,
-            workouts: this.props.tournament.workouts,
-            filter: utils.initFilter(this.props.tournament.active)
+        if (this.props.tournament) {
+            this.state = {
+                active: this.props.tournament.active,
+                leaderboard: utils.initLeaderboard(this.props.tournament),
+                origin: this.props.tournament.leaderboard,
+                workouts: this.props.tournament.workouts,
+                filter: utils.initFilter(this.props.tournament.active)
+            }
+        } else {
+            this.state = {
+                active: false,
+                leaderboard: [],
+                origin: [],
+                workouts: [],
+                filter: utils.initFilter(false)
+            }
         }
     }
 
     static getDerivedStateFromProps = (nextProps, prevState) => {
-        if (JSON.stringify(nextProps.tournament.leaderboard) !== JSON.stringify(prevState.origin)) {
-            let newOrigin = nextProps.tournament.leaderboard
-            let tournamentActive = nextProps.tournament.active
-            let workouts = nextProps.tournament.workouts
-            let filter = nextProps.resetFilter ? utils.initFilter(tournamentActive) : prevState.filter
-            let newLeaderboard = utils.filterLeaderboard(tournamentActive, filter, newOrigin, workouts)
-            return { active: tournamentActive, leaderboard: newLeaderboard, origin: newOrigin, filter }
-        }       
-        if (JSON.stringify(nextProps.tournament.workouts) !== JSON.stringify(prevState.workouts)) {
-            let newWorkouts = nextProps.tournament.workouts
-            return { workouts: newWorkouts }
-        } 
-        if (prevState.active !== nextProps.tournament.active) {
-            const tournamentActive = nextProps.tournament.active
-            let newOrigin = nextProps.tournament.leaderboard
-            let filter = utils.initFilter(tournamentActive)
-            let newLeaderboard = utils.filterLeaderboard(tournamentActive, filter, newOrigin, nextProps.tournament.workouts)
-
-            return { active: tournamentActive, leaderboard: newLeaderboard, filter }
+        if (nextProps.tournament) {
+            if (JSON.stringify(nextProps.tournament.leaderboard) !== JSON.stringify(prevState.origin)) {
+                let newOrigin = nextProps.tournament.leaderboard
+                let tournamentActive = nextProps.tournament.active
+                let workouts = nextProps.tournament.workouts
+                let filter = nextProps.resetFilter ? utils.initFilter(tournamentActive) : prevState.filter
+                let newLeaderboard = utils.filterLeaderboard(tournamentActive, filter, newOrigin, workouts)
+                return { active: tournamentActive, leaderboard: newLeaderboard, origin: newOrigin, filter }
+            }       
+            if (JSON.stringify(nextProps.tournament.workouts) !== JSON.stringify(prevState.workouts)) {
+                let newWorkouts = nextProps.tournament.workouts
+                return { workouts: newWorkouts }
+            } 
+            if (prevState.active !== nextProps.tournament.active) {
+                const tournamentActive = nextProps.tournament.active
+                let newOrigin = nextProps.tournament.leaderboard
+                let filter = utils.initFilter(tournamentActive)
+                let newLeaderboard = utils.filterLeaderboard(tournamentActive, filter, newOrigin, nextProps.tournament.workouts)
+    
+                return { active: tournamentActive, leaderboard: newLeaderboard, filter }
+            }
+            return {}
+        } else {
+            return {}
         }
-        return {}
      }
 
     handleFilter = (filter, active, workouts) => {
@@ -93,10 +108,11 @@ export default class Leaderboard extends Component {
     }
     
     render() {
+        const title = this.props.tournament ? this.props.tournament.name : this.props.tournament === null ? createTournamentLabel : ''
         return (
             <Fragment>
                 <Controls 
-                    tournament={this.props.tournament.name}
+                    title={title}
                     active={this.state.active} 
                     filter={this.state.filter}
                     handleFilter={this.handleFilter}
@@ -106,14 +122,14 @@ export default class Leaderboard extends Component {
                     workouts={this.state.workouts}
                 />
 
-                <AthleteRowHeader active={this.state.active} workouts={this.state.workouts} />
-                <AthleteRowWrapper 
+                {this.state.active && <AthleteRowHeader workouts={this.state.workouts} />}
+                {this.state.leaderboard && <AthleteRowWrapper 
                     admin={this.props.admin} 
                     active={this.state.active}
                     leaderboard={this.state.leaderboard} 
                     handleRemoveAthlete={this.handleRemoveAthlete} 
                     handleConfirmReps={this.handleConfirmReps}
-                />
+                />}
             </Fragment>
         )
     }

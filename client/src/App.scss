@@ -34,7 +34,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
     // BOXZONAZERO
     // margin: 1em 0 1em 1em;
     // width: 20%;
-    max-width: 5em;
+    max-width: 10em;
   }
   button.menu {
     float: right;
@@ -45,6 +45,10 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
     }
     i {
       font-size: 2.6em;
+      transition: transform .2s !important;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
   .adminLogin {
@@ -56,6 +60,10 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
       display: inline-block;
       width: 54px;
       cursor: pointer;
+      transition: transform .2s;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
     .logout {
       filter: invert(0.9);
@@ -500,7 +508,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
   }
   
   .ui.image.logo {
-    margin: 1.5em 0 0; 
+    margin: 1em 0 0; 
     max-width: 10em;
     // BOXZONAZERO
     // margin: 1em 0 0; 

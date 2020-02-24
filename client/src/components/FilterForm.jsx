@@ -32,22 +32,6 @@ export default class FilterForm extends Component {
         [{text: 'Rx', value: 'Rx'}, {text: 'Scaled', value: 'Scaled'}] : 
         [{text: 'All', value: 'All'}, {text: 'Rx', value: 'Rx'}, {text: 'Scaled', value: 'Scaled'}]
 
-    // componentWillReceiveProps(nextProps) {
-    //     this.setState({ 
-    //         gender: nextProps.filter.gender,
-    //         age: nextProps.filter.age,
-    //         category: nextProps.filter.category
-    //     })
-    // }
-
-    // static getDerivedStateFromProps = (nextProps, prevState) => {
-    //     if(JSON.stringify(nextProps.filter) !== JSON.stringify(prevState.filter)) {
-    //       return { filter: nextProps.filter};
-    //    }
-    //    else return null;
-    //  }
-     
-
     handleChange = (e, { name, value }) => {
         let filter = this.state.filter
         if (filter[name] !== value) {
@@ -57,7 +41,6 @@ export default class FilterForm extends Component {
     }
 
     render() {
-
         return (
             <Form unstackable className="filterForm">
                 <img className='iconForm' alt='' src={filterIcon}/>
