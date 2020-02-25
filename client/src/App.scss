@@ -27,15 +27,18 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 /* Header */
 .header {
   width: 100%;
+  text-align: left;
+  height: 100px;
+  .helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
   .logo {
-    position: absolute !important;
-    float: left;
-    margin: 2em 0 1em 0.5em;
     width: 40%;
+    vertical-align: middle;
+    margin: 0 0.5em;
     // BOXZONAZERO
-    // margin: 1em 0 1em 1em;
-    // width: 20%;
-    max-width: 10em;
   }
   button.menu {
     float: right;
@@ -115,7 +118,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
   border-bottom: 1px solid $lightBorderline;
   .tournament {
     float: left;
-    margin: 1.2em;
+    margin: 1em;
     font-weight: 700;
   }
   .button.controlButton {
