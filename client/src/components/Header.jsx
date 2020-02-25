@@ -2,6 +2,8 @@ import React from 'react'
 import AdminLogin from './AdminLogin';
 import { Button, Icon } from 'semantic-ui-react';
 import logo from '../images/logo-qubox.png'
+// BOXZONAZERO
+// import logo from '../images/logo-zonazero.png'
 
 export default function Header(props) {
   return (

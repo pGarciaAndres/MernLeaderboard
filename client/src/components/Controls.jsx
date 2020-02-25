@@ -49,7 +49,7 @@ export default class Controls extends Component {
             {this.props.admin && 
             <Button icon className="controlButton" 
               onClick={this.startCompetition}
-              disabled={!this.props.startCompetition}>
+              disabled={!this.props.active}>
               <Icon className="large sign-in icon"/>
             </Button>}
             {/* Filter */}
