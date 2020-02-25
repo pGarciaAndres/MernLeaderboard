@@ -17,6 +17,9 @@ export default class Controls extends Component {
     if (this.props.title !== prevProps.title) {
       this.closeForms()
     }
+    if (this.props.admin !== prevProps.admin && this.props.admin === false) {
+      this.closeForms()
+    }
   }
 
   startCompetition = () => {
@@ -37,6 +40,10 @@ export default class Controls extends Component {
   closeForms = () => {
     this.setState({creatingAthlete: false, openFilter: false})
   }
+
+  noDataFound = () => {
+    return (this.props.title === 'No data')
+  }
     
   render() {
     return (
@@ -49,12 +56,12 @@ export default class Controls extends Component {
             {this.props.admin && 
             <Button icon className="controlButton" 
               onClick={this.startCompetition}
-              disabled={!this.props.active}>
+              disabled={this.noDataFound()}>
               <Icon className="large sign-in icon"/>
             </Button>}
             {/* Filter */}
             <Button icon active={this.state.openFilter} 
-              className="controlButton" 
+              className={this.props.admin ? 'controlButton' : 'controlButton marginRight'}
               onClick={() => this.setState({creatingAthlete: false, openFilter: !this.state.openFilter})}
               disabled={!this.props.filter}>
               <Icon className="large sort amount down icon"/>
@@ -64,13 +71,13 @@ export default class Controls extends Component {
             <Button icon active={this.state.creatingAthlete} 
               className="controlButton" 
               onClick={() => this.setState({openFilter: false, creatingAthlete: !this.state.creatingAthlete})}
-              disabled={!this.props.handleAddAthlete}>
+              disabled={this.props.disableAddAthlete}>
               <Icon className="large user plus icon"/>
             </Button>}
           </React.Fragment>}
 
           {this.props.active && 
-          <Button icon active={this.state.openFilter} className="controlButton" onClick={() => this.setState({openFilter: !this.state.openFilter})}>
+          <Button icon active={this.state.openFilter} className="controlButton marginRight" onClick={() => this.setState({openFilter: !this.state.openFilter})}>
             <Icon className="large sort amount down icon"/>
           </Button>}
         </div>

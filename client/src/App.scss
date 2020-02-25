@@ -122,13 +122,15 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
     font-weight: 700;
   }
   .button.controlButton {
-    padding: .78571429em .78571429em .78571429em;
     float: right;
     margin: 0.55em 0.3em;
     font-size: 85%;
     background: transparent;
     border: 1px solid white;
     color: white;
+    &.marginRight {
+      margin-right: 1em;
+    }
   }
   .active.button.controlButton {
     background-color: #c0c1c2;
@@ -491,7 +493,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
       // max-width: 4em;
     }
     button.menu {
-      margin: 16px;
+      margin: 16px 0 16px 16px;
       i {
         font-size: 3.7em;
       }

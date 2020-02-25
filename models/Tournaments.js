@@ -6,7 +6,7 @@ const TournamentsSchema = new Schema({
     name: { type: String, required: true },
     active: { type: Boolean, required: true },
     workouts: { type: Array, required: true },
-    participants: { type: Number, required: true },
+    participants: { type: Number, required: false },
     leaderboard: { type: Array, required: true }
 })
 

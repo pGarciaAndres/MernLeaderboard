@@ -7,7 +7,7 @@ import noPhotoFemale from '../images/noPhotoFemale.jpg'
 import LeaderboardUtils from './LeaderboardUtils'
 
 const utils = new LeaderboardUtils()
-const createTournamentLabel = 'Create a new tournament'
+const noDataLabel = 'No data'
 
 export default class Leaderboard extends Component {
     constructor(props) {
@@ -108,7 +108,7 @@ export default class Leaderboard extends Component {
     }
     
     render() {
-        const title = this.props.tournament ? this.props.tournament.name : this.props.tournament === null ? createTournamentLabel : ''
+        const title = this.props.tournament ? this.props.tournament.name : this.props.tournament === null ? noDataLabel : ''
         return (
             <Fragment>
                 <Controls 
@@ -120,6 +120,7 @@ export default class Leaderboard extends Component {
                     startCompetition={this.startCompetition}
                     admin={this.props.admin} 
                     workouts={this.state.workouts}
+                    disableAddAthlete={utils.disableAddAthlete(this.props.tournament, this.state.leaderboard.length)}
                 />
 
                 {this.state.active && <AthleteRowHeader workouts={this.state.workouts} />}

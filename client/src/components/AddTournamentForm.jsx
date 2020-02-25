@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Message } from 'semantic-ui-react';
 const nameLabel = 'Insert name';
-const participantsLabel = 'Number of participants'
+const participantsLabel = 'Limit of participants'
 const createLabel = 'Create';
 const maxTournaments = 2;
 
@@ -25,7 +25,6 @@ export default class addTournamentForm extends Component {
 
     disabledAddTournament = (tournament) => {
       return tournament.name.length === 0 || 
-             tournament.participants === "" ||
              parseInt(tournament.participants) === 0 ||
              this.limitOfTournaments()
     }
@@ -54,12 +53,13 @@ export default class addTournamentForm extends Component {
         name='name'
         id='tName'
         onChange={this.handleChange}
-        autoComplete="off"/>
+        autoComplete="off"
+        maxLength="14"/>
         {/* Participants */}
         <Form.Input 
         placeholder={participantsLabel}
         type='number'
-        min="0"
+        min="5"
         step="5"
         name='participants'
         id='participants'

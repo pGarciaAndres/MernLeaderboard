@@ -120,4 +120,11 @@ export default class LeaderboardUtils extends Component {
     calculateGlobalPoints = (athleteScoreTable) => {
         return athleteScoreTable.reduce((a, b) => a + (b['wodRanking'] || 0), 0)
     }
+
+    disableAddAthlete = (tournament, currentNumParticipants) => {
+        return (
+            !tournament ||
+            tournament.participants === currentNumParticipants
+        )
+    }
 }
