@@ -28,22 +28,20 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 .header {
   width: 100%;
   text-align: left;
-  height: 100px;
-  .helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-  }
   .logo {
+    position: absolute;
     width: 40%;
-    vertical-align: middle;
-    margin: 0 0.5em;
+    margin-top: 35px;
+    margin-left: 0.5em;
+    max-width: 10em;
     // BOXZONAZERO
   }
   button.menu {
     float: right;
-    margin: 23px 5px;
+    margin: 23px 0px;
     background: transparent;
+    border: none;
+    box-shadow: none;
     &:focus, &:hover {
       background: transparent;
     }
@@ -79,12 +77,15 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
       input {
         font-size: 0.65em;
         height: 37px;
-        width: 9em;
+        width: 8em;
+        padding: 0.5em;
       }
     }
     .pwdButton {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
       margin-top: 5px;
-      margin-left: -4em;
+      margin-left: -2em;
       background: transparent !important;
       &:enabled i {
         color: $greenBackground;
@@ -101,7 +102,6 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
   width: 100%;
   position: relative;
   text-align: left;
-  border-top: 1px solid $lightBorderline;
   border-bottom: 1px solid $lightBorderline;
   letter-spacing: 2px;
   p {
@@ -118,7 +118,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
   border-bottom: 1px solid $lightBorderline;
   .tournament {
     float: left;
-    margin: 1em;
+    margin: 1.2em 1em;
     font-weight: 700;
   }
   .button.controlButton {
@@ -483,6 +483,13 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 @media only screen and (min-width: 768px) {
   .header {
     padding: 0px 3.5%;
+    .logo {
+      margin: 1em 0 0; 
+      max-width: 10em;
+      // BOXZONAZERO
+      // margin: 1em 0 0; 
+      // max-width: 4em;
+    }
     button.menu {
       margin: 16px;
       i {
@@ -511,13 +518,6 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
     }
   }
   
-  .ui.image.logo {
-    margin: 1em 0 0; 
-    max-width: 10em;
-    // BOXZONAZERO
-    // margin: 1em 0 0; 
-    // max-width: 4em;
-  }
 
   .titleboard {
     border-top: none;

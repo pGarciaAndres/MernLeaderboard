@@ -6,7 +6,6 @@ import logo from '../images/logo-qubox.png'
 export default function Header(props) {
   return (
     <div className="header">
-      <span className="helper"/>
       <img alt="" className="logo" src={logo}  />
       <Button icon className="menu" onClick={() => props.handleSidebar()}>
         <Icon className={"inverted huge icon menu " + (props.sidebar ? 'chevron left' : 'bars')}/>
