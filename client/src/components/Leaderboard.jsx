@@ -35,12 +35,12 @@ export default class Leaderboard extends Component {
     static getDerivedStateFromProps = (nextProps, prevState) => {
         if (nextProps.tournament) {
             if (JSON.stringify(nextProps.tournament.leaderboard) !== JSON.stringify(prevState.origin)) {
-                let newOrigin = nextProps.tournament.leaderboard
-                let tournamentActive = nextProps.tournament.active
+                let origin = nextProps.tournament.leaderboard
+                let active = nextProps.tournament.active
                 let workouts = nextProps.tournament.workouts
-                let filter = nextProps.resetFilter ? utils.initFilter(tournamentActive) : prevState.filter
-                let newLeaderboard = utils.filterLeaderboard(tournamentActive, filter, newOrigin, workouts)
-                return { active: tournamentActive, leaderboard: newLeaderboard, origin: newOrigin, filter }
+                let filter = nextProps.resetFilter ? utils.initFilter(active) : prevState.filter
+                let leaderboard = utils.filterLeaderboard(active, filter, origin, workouts)
+                return { active, leaderboard, origin, filter, workouts }
             }       
             if (JSON.stringify(nextProps.tournament.workouts) !== JSON.stringify(prevState.workouts)) {
                 let newWorkouts = nextProps.tournament.workouts

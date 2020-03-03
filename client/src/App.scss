@@ -118,7 +118,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
   border-bottom: 1px solid $lightBorderline;
   .tournament {
     float: left;
-    margin: 1.2em 1em;
+    padding: 1.2em 1em;
     font-weight: 700;
   }
   .button.controlButton {
@@ -484,7 +484,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 /* Desktop */
 @media only screen and (min-width: 768px) {
   .header {
-    padding: 0px 3.5%;
+    padding: 0 2%;
     .logo {
       margin: 1em 0 0; 
       max-width: 10em;
@@ -523,17 +523,17 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 
   .titleboard {
     border-top: none;
-    padding: 0px 2%;
+    padding: 0 2%;
     p {
-      padding: 0.5em 1em;
+      padding: 0.5em 0;
     }
   }
   
   .controls {
-    padding: 0px 2%;
+    padding: 0 2%;
     height: 1.8em;
     .tournament {
-      margin: 0.5em 1em;
+      padding: 0.5em 0;
     }
     .button.controlButton {
       font-size: 50%;
@@ -543,7 +543,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
   }
 
   .athleteRowHeader {
-    height: 1em;
+    display: block;
     width: 100%;
     background: $greyBackground;
     border-bottom: 1px solid $lightBorderline;
@@ -551,9 +551,9 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
       width: 29%;
       float: left;
       text-align: left;
-      font-size: 0.5em;
+      font-size: 1rem;
       font-weight: 600;
-      padding-top: 0.3em;
+      padding: 0.6rem 0;
       span {
         &.rank {
           padding: 0 1.8em;
@@ -574,9 +574,10 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
       border: none !important;
       box-shadow: none !important;
       font-weight: 600;
+      padding: 0.6rem 0 !important;
       
       .segment {
-        padding-top: 0.3em;
+        padding-top: 0;
         padding-bottom: 0;
         &:first-child {
           max-width: fit-content
@@ -587,9 +588,6 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 
   .accordionAthlete.mobile {
     display: none;
-  }
-  .athleteRowHeader {
-    display: block;
   }
   .accordionAthlete.desktop {
     display: block;
@@ -626,12 +624,12 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
         margin-top: -0.15em;
       }
       .name {
-        font-size: 0.9em;
+        font-size: 1.75rem;
         display: block;
         width: auto;
       }
       .comeFrom {
-        font-size: 0.4em;
+        font-size: 0.75rem;
         line-height: 1em;
       }
       .dropdown.icon {

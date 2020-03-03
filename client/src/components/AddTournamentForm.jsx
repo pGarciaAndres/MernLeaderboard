@@ -54,7 +54,7 @@ export default class addTournamentForm extends Component {
         id='tName'
         onChange={this.handleChange}
         autoComplete="off"
-        maxLength="14"/>
+        maxLength={14}/>
         {/* Participants */}
         <Form.Input 
         placeholder={participantsLabel}

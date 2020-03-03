@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import { Segment } from 'semantic-ui-react';
 
 export default class AthleteRowHeader extends Component {
+    
+    static getDerivedStateFromProps = (nextProps, prevState) => {
+        console.log(nextProps);
+    }
+
     render() {
         return (
             <div className='athleteRowHeader'>
