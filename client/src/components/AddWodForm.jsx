@@ -27,7 +27,7 @@ export default class AddWodForm extends Component {
     }
 
     disabledCreateWod = (wod) => {
-      return wod.name.length === 0 || wod.rx.length === 0 || wod.sc.length === 0
+      return wod.name.length === 0
     }
     
     addWod = (event) => {

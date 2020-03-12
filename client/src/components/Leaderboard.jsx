@@ -43,15 +43,18 @@ export default class Leaderboard extends Component {
                 return { active, leaderboard, origin, filter, workouts }
             }       
             if (JSON.stringify(nextProps.tournament.workouts) !== JSON.stringify(prevState.workouts)) {
-                let newWorkouts = nextProps.tournament.workouts
-                return { workouts: newWorkouts }
+                let origin = nextProps.tournament.leaderboard
+                let active = nextProps.tournament.active
+                let workouts = nextProps.tournament.workouts
+                let filter = nextProps.resetFilter ? utils.initFilter(active) : prevState.filter
+                let leaderboard = utils.filterLeaderboard(active, filter, origin, workouts)
+                return { leaderboard, workouts }
             } 
             if (prevState.active !== nextProps.tournament.active) {
                 const tournamentActive = nextProps.tournament.active
                 let newOrigin = nextProps.tournament.leaderboard
                 let filter = utils.initFilter(tournamentActive)
                 let newLeaderboard = utils.filterLeaderboard(tournamentActive, filter, newOrigin, nextProps.tournament.workouts)
-    
                 return { active: tournamentActive, leaderboard: newLeaderboard, filter }
             }
             return {}

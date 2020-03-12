@@ -146,7 +146,7 @@ export default class AthleteRow extends Component {
                 {this.state.athleteScoreTable && this.state.athleteScoreTable.map(row => 
                   row.reps !== "0" ? 
                     <Segment key={`${athlete.id}-${row.wodId}`}>{`${row.wodRanking}th `}{row.reps}</Segment> :
-                    <Segment key={`${athlete.id}-${row.wodId}`} className='editableCell'>
+                    <Segment key={`${athlete.id}-${row.wodId}`} className={this.props.admin ? 'editableCell' : ''}>
                       {this.state.editableCell !== `${athlete.id}-${row.wodId}` && 
                         <span onClick={() => this.handleSetEditable(athlete.id, row.wodId)}>
                           {this.props.admin ? addScoreLabel : noScoreLabel}

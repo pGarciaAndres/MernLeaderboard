@@ -4,11 +4,13 @@ import SidebarContent from './components/SidebarContent';
 import Header from './components/Header';
 import TitleBoard from './components/TitleBoard';
 import Leaderboard from './components/Leaderboard';
+import LeaderboardUtils from './components/LeaderboardUtils'
 import { Sidebar, Segment } from 'semantic-ui-react';
 import './App.scss';
 // Services
 import tournamentService from './services/tournamentService';
 
+const utils = new LeaderboardUtils()
 const customStyles = {
   content : {
     top           : '0px',
@@ -79,7 +81,7 @@ class App extends Component {
       this.state.tournaments.find(t => t.id === tournamentId) :
       this.state.tournamentSelected
 
-    if (newLeaderboard) tournamentSelected.leaderboard = newLeaderboard
+    if (newLeaderboard) tournamentSelected.leaderboard = utils.calculateRanking(newLeaderboard, tournamentSelected.workouts)
     if (active) tournamentSelected.active = active
     if (workouts) tournamentSelected.workouts = workouts
 
