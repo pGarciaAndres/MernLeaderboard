@@ -1,8 +1,9 @@
 $darkBackground: #282c34;
 $greyBackground: #444954;
-$greenBackground: #4267b2;
+// QUBOX
+$customBackground: #4267b2;
 // BOXZONAZERO
-// $greenBackground: #396236;
+/* $customBackground: #396236; */
 $lightBorderline: #e1e1e1;
 $athleteFormBackground: 'images/athleteFormBackground.jpg';
 $filterFormBackground: 'images/filterFormBackground.jpg';
@@ -29,12 +30,14 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
   width: 100%;
   text-align: left;
   .logo {
-    position: absolute;
     width: 40%;
-    margin-top: 35px;
     margin-left: 0.5em;
     max-width: 10em;
+    // QUBOX
+    margin-top: 35px;
     // BOXZONAZERO
+    /* max-width: 6em;
+    margin-top: 10px; */
   }
   button.menu {
     float: right;
@@ -88,7 +91,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
       margin-left: -2em;
       background: transparent !important;
       &:enabled i {
-        color: $greenBackground;
+        color: $customBackground;
       }
     }
     .pwdButton:hover {
@@ -114,7 +117,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 .controls {
   height: 3.5em;
   width: 100%;
-  background: $greenBackground;
+  background: $customBackground;
   border-bottom: 1px solid $lightBorderline;
   .tournament {
     float: left;
@@ -306,7 +309,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
             background: transparent;
             padding: 0;
             &:enabled i {
-              color: $greenBackground;
+              color: $customBackground;
             }
           }
         }
@@ -413,7 +416,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
     color: black;
     width: 50%;
     &:hover {
-      background: $greenBackground;
+      background: $customBackground;
       color: white;
     }
     &.disabled {
@@ -491,11 +494,12 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
   .header {
     padding: 0 2%;
     .logo {
+      // QUBOX
       margin: 1em 0 0; 
       max-width: 10em;
       // BOXZONAZERO
-      // margin: 1em 0 0; 
-      // max-width: 4em;
+      /* margin: 0.2em 0 0; 
+      max-width: 4.5em !important; */
     }
     button.menu {
       margin: 16px 0 16px 16px;
