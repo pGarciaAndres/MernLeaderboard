@@ -8,6 +8,13 @@ import LeaderboardUtils from './LeaderboardUtils'
 
 const utils = new LeaderboardUtils()
 const noDataLabel = 'No data'
+const initialValue = {
+    active: false,
+    leaderboard: [],
+    origin: [],
+    workouts: [],
+    filter: utils.initFilter(false)
+}
 
 export default class Leaderboard extends Component {
     constructor(props) {
@@ -22,13 +29,7 @@ export default class Leaderboard extends Component {
                 filter: utils.initFilter(this.props.tournament.active)
             }
         } else {
-            this.state = {
-                active: false,
-                leaderboard: [],
-                origin: [],
-                workouts: [],
-                filter: utils.initFilter(false)
-            }
+            this.state = initialValue
         }
     }
 
@@ -59,7 +60,7 @@ export default class Leaderboard extends Component {
             }
             return {}
         } else {
-            return {}
+            return initialValue;
         }
      }
 

@@ -52,7 +52,7 @@ export default class AthleteRow extends Component {
   handleConfirmReps = () => {
     if (this.state.editReps) {
       const athleteId = parseInt(this.state.editableCell.split("-")[0])
-      const newWodReps = { id: parseInt(this.state.editableCell.split("-")[1]), points: this.state.editReps}
+      const newWodReps = { id: parseInt(this.state.editableCell.split("-")[1]), points: this.state.editReps.replace('.',',')}
       this.props.handleConfirmReps(athleteId, newWodReps)
     }
     this.setState({ activeRow: -1, editableCell: '', editReps: '' })

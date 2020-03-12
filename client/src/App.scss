@@ -277,6 +277,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
         box-shadow: none;
         border-bottom: 0;
         border-right: 0;
+        text-align: right;
         .firstCell {
           flex: 0 1 auto;
           font-weight: bold;
@@ -322,6 +323,14 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
   font-size: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  
+  .empty {
+    text-align: right;
+    margin-right: 1em;
+    &.top {
+      margin-top: 1em;
+    }
+  }
   .title {
     padding: 0 !important;
   }
@@ -347,10 +356,6 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
       color: red;
       font-weight: 600;
     }
-  }
-  .empty {
-    text-align: right;
-    margin-right: 1em;
   }
   .content.active {
     padding: 0 !important;
@@ -669,7 +674,6 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
     }
     .ui.button.deleteButton {
       font-size: 49%;
-      padding: 1em 3em;
     }
   }
   

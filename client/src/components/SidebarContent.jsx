@@ -5,6 +5,7 @@ import AddTournamentForm from './AddTournamentForm'
 const leaderboardLabel = 'LEADERBOARD'
 const workoutsLabel = 'WORKOUTS'
 const deleteLabel = 'DELETE'
+const noTournamentLabel = 'No Tournaments'
 const noWodsLabel = "Oh, there's no Wod yet"
 const newWodLabel = 'NEW'
 const sureLabel = 'Are you sure?'
@@ -106,7 +107,7 @@ export default class SidebarContent extends Component {
                       </Accordion>
                     )}
                     {tournament.workouts.length === 0 && 
-                    <div className='empty'>{noWodsLabel}</div>  }
+                    <div className='empty'>{noWodsLabel}</div> }
 
                     {/* New WOD (Admin) */}
                     {this.props.admin && 
@@ -148,6 +149,10 @@ export default class SidebarContent extends Component {
                 tournaments={this.props.tournaments}/>
             </Accordion.Content>
           </Accordion>}
+          {!this.props.admin && this.props.tournaments.length === 0 &&
+            <Accordion inverted className='accordionTournaments'>
+              <div className='empty top'>{noTournamentLabel}</div> 
+            </Accordion>}
       </Sidebar>
     )
   }

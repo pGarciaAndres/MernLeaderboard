@@ -68,7 +68,8 @@ export default class LeaderboardUtils extends Component {
                         } else if (b.points === '0') {
                             return -1
                         } else {
-                            return this.isScoreForTime(a,b) ? parseInt(a.points.replace(":","")) - parseInt(b.points.replace(":","")) : b.points - a.points
+                            return this.isScoreForTime(a,b) ? parseInt(a.points.replace(":","")) - parseInt(b.points.replace(":","")) : 
+                                parseInt(b.points.replace(",","")) - parseInt(a.points.replace(",",""))
                         }
                     })
                 }
@@ -96,7 +97,13 @@ export default class LeaderboardUtils extends Component {
     getNumberOfReps = (athleteId, wodScores) => {
         let score = this.getAthleteWodScore(athleteId, wodScores)
         if (score && score.points !== "0") {
-          return score.points.includes(':') ? `(${score.points})` : `(${score.points} reps)`
+          if (score.points.includes(':')) {
+            return `(${score.points})`
+          } else if (score.points.includes('.') || score.points.includes(',')) {
+            return `(${score.points} kg)`
+          } else {
+            return `(${score.points} reps)`
+          }
         } else {
           return "0"
         }
