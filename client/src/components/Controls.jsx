@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { Button, Icon } from 'semantic-ui-react';
 import AddAthleteForm from './AddAthleteForm';
 import FilterForm from './FilterForm';
+import Modal from 'react-modal';
+const yesLabel = 'YES'
+const startModalText = `Once the competition has started you can't edit or include more participants\n
+Do you want to start?`
 
 export default class Controls extends Component {
   constructor(props) {
@@ -9,7 +13,8 @@ export default class Controls extends Component {
     
     this.state = {
         creatingAthlete: false,
-        openFilter: false
+        openFilter: false,
+        modalStartIsOpen: false
     }
   }
 
@@ -20,6 +25,14 @@ export default class Controls extends Component {
     if (this.props.admin !== prevProps.admin && this.props.admin === false) {
       this.closeForms()
     }
+  }
+
+  openModalStart = () => {
+    this.setState({ modalStartIsOpen: true })
+  }
+  
+  closeModalStart = () => {
+    this.setState({ modalStartIsOpen: false })
   }
 
   startCompetition = () => {
@@ -38,7 +51,7 @@ export default class Controls extends Component {
   }
 
   closeForms = () => {
-    this.setState({creatingAthlete: false, openFilter: false})
+    this.setState({creatingAthlete: false, openFilter: false, modalStartIsOpen: false})
   }
 
   noDataFound = () => {
@@ -55,7 +68,7 @@ export default class Controls extends Component {
             {/* Start (Admin) */}
             {this.props.admin && 
             <Button icon className="controlButton" 
-              onClick={this.startCompetition}
+              onClick={this.openModalStart}
               disabled={this.noDataFound()}>
               <Icon className="large sign-in icon"/>
             </Button>}
@@ -86,6 +99,20 @@ export default class Controls extends Component {
 
         {this.state.openFilter && <FilterForm filter={this.props.filter} active={this.props.active} handleFilter={this.handleFilter}/>}
 
+        <Modal isOpen={this.state.modalStartIsOpen}
+          onRequestClose={this.closeModalStart}
+          overlayClassName="startModal"
+          contentLabel="Example Modal">
+            <Button className="closeButton" onClick={this.closeModalStart}>x</Button>
+            <p>{startModalText}</p>
+            <Button
+              className="modalButton"
+              onClick={this.startCompetition}>
+                {yesLabel}
+            </Button>
+            
+
+        </Modal>
       </React.Fragment>
     )
   }
