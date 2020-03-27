@@ -3,9 +3,9 @@ import { Button, Icon } from 'semantic-ui-react';
 import AddAthleteForm from './AddAthleteForm';
 import FilterForm from './FilterForm';
 import Modal from 'react-modal';
+
 const yesLabel = 'YES'
-const startModalText = `Once the competition has started you can't edit or include more participants\n
-Do you want to start?`
+const startModalText = "Once the competition has started you can't edit or include more participants. Do you want to start?";
 
 export default class Controls extends Component {
   constructor(props) {

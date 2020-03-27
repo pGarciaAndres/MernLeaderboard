@@ -7,6 +7,7 @@ import Leaderboard from './components/Leaderboard';
 import LeaderboardUtils from './components/LeaderboardUtils'
 import { Sidebar, Segment } from 'semantic-ui-react';
 import './App.scss';
+import './Modal.scss';
 // Services
 import tournamentService from './services/tournamentService';
 
