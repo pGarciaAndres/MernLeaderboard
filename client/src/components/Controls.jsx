@@ -5,7 +5,7 @@ import FilterForm from './FilterForm';
 import Modal from 'react-modal';
 
 const yesLabel = 'YES'
-const startModalText = "Once the competition has started you can't edit or include more participants. Do you want to start?";
+const startModalText = "Once the competition starts you can't edit or include more participants, do you want to start?";
 
 export default class Controls extends Component {
   constructor(props) {
