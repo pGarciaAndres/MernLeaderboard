@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Menu, Accordion, Icon, Sidebar, Button } from 'semantic-ui-react'
 import AddWodForm from './AddWodForm'
 import AddTournamentForm from './AddTournamentForm'
+import LeaderboardUtils from './LeaderboardUtils'
 const leaderboardLabel = 'LEADERBOARD'
 const workoutsLabel = 'WORKOUTS'
 const deleteLabel = 'DELETE'
@@ -11,6 +12,7 @@ const newWodLabel = 'NEW'
 const sureLabel = 'Are you sure?'
 const yesLabel = 'Yes'
 const newTournamentLabel = 'CREATE TOURNAMENT'
+const utils = new LeaderboardUtils()
 
 export default class SidebarContent extends Component {
     constructor(props) {
@@ -110,7 +112,7 @@ export default class SidebarContent extends Component {
                     <div className='empty'>{noWodsLabel}</div> }
 
                     {/* New WOD (Admin) */}
-                    {this.props.admin && 
+                    {this.props.admin && !utils.isTournamentFinished(tournament) &&
                     <Accordion inverted className='accordionWod new wod'>
                       <Accordion.Title active={wodRow === 'ADD'} index={'ADD'} onClick={this.handleOpenWodRow}>
                         <Icon name='dropdown'/>{newWodLabel}

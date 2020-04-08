@@ -607,7 +607,7 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
   .athleteRow,
   .accordionAthlete {
     padding: 0px 0%;
-    max-height: 55px;
+    max-height: 52px;
     .first {
       width: 1.5em;
       margin-top: 0.1em;
@@ -677,7 +677,8 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
       }
     }
     .ui.button.deleteButton {
-      font-size: 49%;
+      font-size: 45%;
+      height: 52px;
     }
   }
   

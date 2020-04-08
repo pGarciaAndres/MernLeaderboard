@@ -47,10 +47,11 @@ class App extends Component {
   }
 
   getTournaments = async() => {
-    let response = await tournamentService.getTournaments();
+    const response = await tournamentService.getTournaments();
+    const tournamentSelected = response.length > 0 ? response[response.length-1] : null
     this.setState({
       tournaments: response,
-      tournamentSelected: response.length > 0 ? response[response.length-1] : null
+      tournamentSelected: tournamentSelected
     })
   }
 
@@ -83,7 +84,7 @@ class App extends Component {
       this.state.tournamentSelected
 
     if (newLeaderboard) tournamentSelected.leaderboard = utils.calculateRanking(newLeaderboard, tournamentSelected.workouts)
-    if (active) tournamentSelected.active = active
+    if (active !== null && active !== undefined) tournamentSelected.active = active
     if (workouts) tournamentSelected.workouts = workouts
 
     tournamentService.updateTournament(tournamentSelected.id, tournamentSelected).then((res) => {

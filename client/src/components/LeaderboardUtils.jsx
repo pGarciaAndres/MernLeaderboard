@@ -134,4 +134,13 @@ export default class LeaderboardUtils extends Component {
             tournament.participants === currentNumParticipants
         )
     }
+
+    isTournamentFinished = (tournament) => {
+        return (
+            tournament &&
+            !tournament.active &&
+            tournament.leaderboard.length > 0 &&
+            tournament.leaderboard[0].scores.length > 0
+        )
+    }
 }

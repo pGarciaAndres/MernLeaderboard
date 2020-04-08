@@ -1,12 +1,13 @@
 $lightBorderline: #e1e1e1;
-$startModalBackground: 'images/startModalBackground.jpg';
+$startModalImage: 'images/startModalBackground.jpg';
+$finishModalImage: 'images/finishModalBackground.jpg';
 // QUBOX
-$customBackground: #4267b2;
+$customBackgroundColor: #4267b2;
 // BOXZONAZERO
-/* $customBackground: #396236; */
+/* $customBackgroundColor: #396236; */
 
 // Modal
-.startModal {
+.customModal {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -14,13 +15,10 @@ $customBackground: #4267b2;
     bottom: 0px;
     background-color: rgba(0, 0, 0, 0.4);
     .ReactModal__Content {
-      top: 200px !important;
-      bottom: 360px !important;
       max-width: 620px;
+      height: fit-content;
       margin: auto;
       border-radius: 10px !important;
-      background: linear-gradient(to left, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 1)), url($startModalBackground) !important;
-      background-size: contain !important;
       background-position: top right !important;
       border: 2px $lightBorderline solid !important;
       overflow: hidden !important;
@@ -38,10 +36,10 @@ $customBackground: #4267b2;
         border: 1px solid white;
         color: white;
         display: block;
-        margin: auto;
+        margin: auto auto 10px auto;
       }
       .modalButton:hover {
-        background-color: $customBackground;
+        background-color: $customBackgroundColor;
         color: white;
       }
       .closeButton {
@@ -55,10 +53,25 @@ $customBackground: #4267b2;
         margin-right: 0.5em;
       }
     }
+
+    &.start {
+      .ReactModal__Content {
+        background: linear-gradient(to left, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 1)), url($startModalImage) !important;
+        background-size: contain !important;
+      }
+    }
+
+    &.finish {
+      .ReactModal__Content {
+        background: linear-gradient(to left, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 1)), url($finishModalImage) !important;
+        background-size: cover !important;
+      }
+    }
     
     /* Mobile */
     @media (max-width: 767px) {
       .ReactModal__Content {
+        top: 150px !important;
         left: 20px !important;
         right: 20px !important;
         bottom: auto !important;

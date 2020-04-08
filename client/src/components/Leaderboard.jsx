@@ -110,27 +110,37 @@ export default class Leaderboard extends Component {
         const active = true
         this.props.handleUpdateTournament(null, active)
     }
+
+    finishCompetition = () => {
+        const active = false
+        this.props.handleUpdateTournament(null, active) 
+    }
     
     render() {
         const title = this.props.tournament ? this.props.tournament.name : this.props.tournament === null ? noDataLabel : ''
+        const finished = utils.isTournamentFinished(this.props.tournament)
         return (
             <Fragment>
                 <Controls 
                     title={title}
-                    active={this.state.active} 
+                    active={this.state.active}
+                    finished={finished}
                     filter={this.state.filter}
-                    handleFilter={this.handleFilter}
-                    handleAddAthlete={this.handleAddAthlete} 
-                    startCompetition={this.startCompetition}
-                    admin={this.props.admin} 
+                    admin={this.props.admin}
                     workouts={this.state.workouts}
+                    currentNumParticipants={this.state.leaderboard.length}
+                    handleFilter={this.handleFilter}
+                    handleAddAthlete={this.handleAddAthlete}
+                    startCompetition={this.startCompetition}
+                    finishCompetition={this.finishCompetition}
                     disableAddAthlete={utils.disableAddAthlete(this.props.tournament, this.state.leaderboard.length)}
                 />
 
-                {this.state.active && <AthleteRowHeader workouts={this.state.workouts} />}
+                {(this.state.active || finished ) && <AthleteRowHeader workouts={this.state.workouts} />}
                 {this.state.leaderboard && <AthleteRowWrapper 
                     admin={this.props.admin} 
                     active={this.state.active}
+                    finished={finished}
                     leaderboard={this.state.leaderboard} 
                     handleRemoveAthlete={this.handleRemoveAthlete} 
                     handleConfirmReps={this.handleConfirmReps}

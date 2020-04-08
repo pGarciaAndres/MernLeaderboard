@@ -65,7 +65,7 @@ export default class AthleteRow extends Component {
     
     return (
       <Fragment>
-        {!this.props.active && 
+        {!this.props.active && !this.props.finished &&
           <div className='athleteRow'>
             <div className='first'>
               <div className='gender'>
@@ -88,7 +88,7 @@ export default class AthleteRow extends Component {
           </div>
         }
         {/* Mobile */}
-        {this.props.active &&           
+        {(this.props.active || this.props.finished) &&           
           <Accordion className='accordionAthlete mobile' styled>
             <Accordion.Title className='athlete' active={activeRow === athlete.id} index={athlete.id} onClick={this.handleOpenRow}>
               <div className='scoreRow'>
@@ -130,7 +130,7 @@ export default class AthleteRow extends Component {
           </Accordion>
         }
         {/* Desktop */}
-        {this.props.active &&           
+        {(this.props.active || this.props.finished) &&    
           <div className='accordionAthlete desktop'>
             <div className='athlete'>
               <div className='scoreRow'>

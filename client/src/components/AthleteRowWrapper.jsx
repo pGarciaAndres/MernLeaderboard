@@ -9,7 +9,8 @@ export default class AthleteRowWrapper extends Component {
                     <AthleteRow 
                         admin={this.props.admin} 
                         key={athlete.id} 
-                        active={this.props.active} 
+                        active={this.props.active}
+                        finished={this.props.finished}
                         athlete={athlete} 
                         position={this.props.leaderboard.indexOf(athlete)+1}
                         handleRemoveAthlete={this.props.handleRemoveAthlete} 
