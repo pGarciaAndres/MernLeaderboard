@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Button, Icon } from 'semantic-ui-react';
-import AddAthleteForm from './AddAthleteForm';
-import FilterForm from './FilterForm';
-import Modal from 'react-modal';
+import { Button, Icon } from 'semantic-ui-react'
+import AddAthleteForm from './AddAthleteForm'
+import FilterForm from './FilterForm'
+import Modal from 'react-modal'
 
 const yesLabel = 'YES'
-const startModalText = "Once the competition starts you can't edit or include more participants, do you want to start?";
-const finishModalText = "Are you sure you want to finish this competition permanently?";
+const startModalText = "Once the competition starts you can't edit or include more participants, do you want to start?"
+const finishModalText = "Are you sure you want to finish this competition permanently?"
 
 export default class Controls extends Component {
   constructor(props) {
@@ -70,7 +70,11 @@ export default class Controls extends Component {
   }
 
   startDisabled = () => {
-    return (this.props.title === 'No data' || this.props.currentNumParticipants === 0)
+    return (this.props.title === 'No data' || this.props.firstParticipant === undefined)
+  }
+
+  finishDisabled = () => {
+    return (this.props.firstParticipant.scores.length === 0 )
   }
     
   render() {
@@ -107,7 +111,8 @@ export default class Controls extends Component {
           {/* Finish Competition (Admin) */}
           {this.props.active && this.props.admin &&
             <Button icon className="controlButton" 
-              onClick={this.openModalFinish}>
+              onClick={this.openModalFinish}
+              disabled={this.finishDisabled()}>
               <Icon className="large winner icon"/>
             </Button>}
 
@@ -117,9 +122,14 @@ export default class Controls extends Component {
           </Button>}
         </div>
 
-        {this.state.creatingAthlete && <AddAthleteForm handleAddAthlete={this.handleAddAthlete}/>}
+        {this.state.creatingAthlete && 
+          <AddAthleteForm handleAddAthlete={this.handleAddAthlete}/>}
 
-        {this.state.openFilter && <FilterForm filter={this.props.filter} active={this.props.active} handleFilter={this.handleFilter}/>}
+        {this.state.openFilter && 
+          <FilterForm filter={this.props.filter} 
+          active={this.props.active} 
+          workouts={this.props.workouts} 
+          handleFilter={this.handleFilter}/>}
 
         <Modal isOpen={this.state.modalStartIsOpen}
           onRequestClose={this.closeModalStart}

@@ -1,8 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import DeleteButton from './DeleteButton';
-import { Icon, Accordion, Segment, Input, Button } from 'semantic-ui-react';
+import { Icon, Accordion, Segment, Input } from 'semantic-ui-react';
+import goldPosition from '../images/gold.jpg'
+import silverPosition from '../images/silver.jpg'
+import bronzePosition from '../images/bronze.jpg'
 const noScoreLabel = 'No score';
 const addScoreLabel = 'Click to add score';
+const insertScoreLabel = 'Insert here..';
 
 export default class AthleteRow extends Component {
   constructor(props) {
@@ -34,7 +38,7 @@ export default class AthleteRow extends Component {
   }
 
   handleSetEditable = (athleteId, wodId) => {
-    if (this.props.admin) {
+    if (this.props.admin && !this.props.finished) {
       this.setState({editableCell: `${athleteId}-${wodId}`})
     }
   }
@@ -45,23 +49,35 @@ export default class AthleteRow extends Component {
 
   keyPressed = (event) => {
     if (event.key === "Enter") {
-      this.handleConfirmReps()
+      this.handleConfirmReps(event)
     }
   }
 
-  handleConfirmReps = () => {
+  handleConfirmReps = (event) => {
     if (this.state.editReps) {
       const athleteId = parseInt(this.state.editableCell.split("-")[0])
       const newWodReps = { id: parseInt(this.state.editableCell.split("-")[1]), points: this.state.editReps.replace('.',',')}
       this.props.handleConfirmReps(athleteId, newWodReps)
     }
-    this.setState({ activeRow: -1, editableCell: '', editReps: '' })
+    this.setState({ editableCell: '', editReps: '' })
+    event.stopPropagation();
+  }
+
+  getPodium = (position) => {
+    if (position === 1) {
+      return <img src={goldPosition} alt="First Place"/>
+    } else if (position === 2) {
+      return <img src={silverPosition} alt="Second Place"/>
+    } else if (position === 3) {
+      return <img src={bronzePosition} alt="Third Place"/>
+    } else {
+      return <span className='score'>{position}.</span>
+    }
   }
 
   render() {
-    const { activeRow } = this.state
+    const { activeRow, editableCell, editReps } = this.state
     const { athlete, position } = this.props
-    let editReps = this.state.editReps
     
     return (
       <Fragment>
@@ -92,7 +108,12 @@ export default class AthleteRow extends Component {
           <Accordion className='accordionAthlete mobile' styled>
             <Accordion.Title className='athlete' active={activeRow === athlete.id} index={athlete.id} onClick={this.handleOpenRow}>
               <div className='scoreRow'>
-                <span className='score'>{position}. </span>
+                {this.props.finished &&
+                  this.getPodium(position)
+                }
+                {!this.props.finished &&
+                  <span className='score'>{position}.</span>
+                }
               </div>
               <Icon name='dropdown' />
               <div className='name'>{athlete.name}</div>
@@ -107,22 +128,26 @@ export default class AthleteRow extends Component {
                   {this.state.athleteScoreTable && this.state.athleteScoreTable.map(row => 
                     <Segment.Group key={`${athlete.id}-${row.wodId}`} horizontal>
                       <Segment className='firstCell'>{row.wodName}</Segment>
-                      {row.reps !== "0" && <Segment>{`${row.wodRanking}th `}{row.reps}</Segment>}
-                      {row.reps === "0" && 
-                        <Segment className='editableCell' onClick={() => this.handleSetEditable(athlete.id, row.wodId)}>
-                          {this.state.editableCell !== `${athlete.id}-${row.wodId}` && 
-                            <Fragment>-
-                              {this.props.admin && <Icon className="large pencil icon editIcon"/>}
-                            </Fragment>}
-                          {this.state.editableCell === `${athlete.id}-${row.wodId}` && 
+                        <Segment className={!this.props.finished ? 'editableCell':''} onClick={() => this.handleSetEditable(athlete.id, row.wodId)}>
+                          {editableCell !== `${athlete.id}-${row.wodId}` && 
+                            (row.reps === "0" ? 
+                              <Fragment>
+                                -{this.props.admin && <Icon className="large pencil icon editIcon"/>}
+                              </Fragment>
+                            :
+                              <Fragment>
+                                {`${row.wodRanking}th `} {row.reps}
+                              </Fragment>)
+                          }
+                          {editableCell === `${athlete.id}-${row.wodId}` && 
                             <Fragment>
-                              <Input autoFocus value={editReps} placeholder='Reps or time...' onChange={this.handleChangeReps} onKeyDown={this.keyPressed}/>
-                              <Button icon className="editConfirmIcon" disabled={editReps.length === 0 } onClick={this.handleConfirmReps}>
-                                <Icon className="large check icon"/>
-                              </Button>
+                              <Input autoFocus type="text" value={editReps} placeholder={insertScoreLabel} onChange={this.handleChangeReps} onKeyDown={this.keyPressed}/>
+                              {editReps === '' ? 
+                                <i className="large close icon" onClick={this.handleConfirmReps}/> :
+                                <i className="large check icon" onClick={this.handleConfirmReps}/>
+                              }
                             </Fragment>}
                         </Segment>
-                      }
                     </Segment.Group>
                   )}
                 </div>
@@ -134,7 +159,12 @@ export default class AthleteRow extends Component {
           <div className='accordionAthlete desktop'>
             <div className='athlete'>
               <div className='scoreRow'>
-                <span className='score'>{position}.</span>
+                {this.props.finished &&
+                  this.getPodium(position)
+                }
+                {!this.props.finished &&
+                  <span className='score'>{position}.</span>
+                }
               </div>
               <img src={`${athlete.photo}`} alt="athlete-img"/>
               <span className='name'>{athlete.name}</span>
@@ -143,19 +173,21 @@ export default class AthleteRow extends Component {
             <div className='scores'>
               <Segment.Group horizontal>
                 <Segment className='globalPoints'>{`(${athlete.globalPoints})`}</Segment>
-                {this.state.athleteScoreTable && this.state.athleteScoreTable.map(row => 
-                  row.reps !== "0" ? 
-                    <Segment key={`${athlete.id}-${row.wodId}`}>{`${row.wodRanking}th `}{row.reps}</Segment> :
-                    <Segment key={`${athlete.id}-${row.wodId}`} className={this.props.admin ? 'editableCell' : ''}>
-                      {this.state.editableCell !== `${athlete.id}-${row.wodId}` && 
+                {this.state.athleteScoreTable && this.state.athleteScoreTable.map(row =>
+                    <Segment key={`${athlete.id}-${row.wodId}`} className={this.props.admin && !this.props.finished ? 'editableCell' : ''}>
+                      {editableCell !== `${athlete.id}-${row.wodId}` && 
                         <span onClick={() => this.handleSetEditable(athlete.id, row.wodId)}>
-                          {this.props.admin ? addScoreLabel : noScoreLabel}
+                          {row.reps === "0" && (this.props.admin ? addScoreLabel : noScoreLabel)}
+                          {row.reps !== "0" && (`${row.wodRanking}th ${row.reps}`)}
                         </span>
                       }
-                      {this.state.editableCell === `${athlete.id}-${row.wodId}` && 
+                      {editableCell === `${athlete.id}-${row.wodId}` && 
                         <div className="ui icon input">
-                          <Input autoFocus type="text" value={editReps} placeholder="Reps or time..." onChange={this.handleChangeReps} onKeyDown={this.keyPressed}/>
-                          <i className="circular check link icon" onClick={this.handleConfirmReps}></i>
+                          <Input autoFocus type="text" value={editReps} placeholder={insertScoreLabel} onChange={this.handleChangeReps} onKeyDown={this.keyPressed}/>
+                          {editReps === '' ? 
+                            <i className="circular close link icon" onClick={this.handleConfirmReps}/> :
+                            <i className="circular check link icon" onClick={this.handleConfirmReps}/>
+                           }
                         </div>
                       }
                     </Segment>

@@ -248,12 +248,15 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
       width: 2.5em;
       float: left;
       text-align: center;
-      margin: 0.3em 0;
-    }
-    .score {
-      font-size: xx-large;
-      font-weight: normal;
-      vertical-align: bottom;
+      img {
+        width: 60px;
+        margin-left: -10px;
+      }
+      .score {
+        font-size: xx-large;
+        font-weight: normal;
+        vertical-align: -webkit-baseline-middle;
+      }
     }
   }
   .content {
@@ -291,6 +294,14 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
             border: none;
             padding: 0;
           }
+          i.check.icon {
+            cursor: pointer;
+            color: green;
+          }
+          i.close.icon {
+            cursor: pointer;
+            color: red;
+          }
         }
 
         .segment {
@@ -303,14 +314,6 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
           }
           &:hover .editIcon {
             opacity: 1;
-          }
-          .editConfirmIcon {
-            float: right;
-            background: transparent;
-            padding: 0;
-            &:enabled i {
-              color: $customBackground;
-            }
           }
         }
       }
@@ -449,11 +452,23 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 
 /* Filter Form */
 .filterForm {
-  padding: 2em;
+  padding: 1em;
   background-image: url($filterFormBackground);
   background-size: cover;
   width: 100%;
   border-bottom: 1px solid lightgray;
+  .iconForm {
+    display: block;
+    margin: 0 auto;
+  }
+  .field {
+    width: 44%;
+    display: inline-block;
+    margin: 0.3em 0.5em !important;
+    >.selection.dropdown {
+      min-width: 10em;
+    }
+  }
 }
 
 /* Wod Form */
@@ -622,15 +637,12 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
     .athlete {
       float: left;
       width: 30%;
-      padding: 0em 0.4em 0.5em !important;
-      margin-top: 0.2em !important;
-      margin-bottom: 0.3em !important;
+      padding: 0em 0.4em 0em !important;
       img {
         float: left;
         width: 50px;
         border-radius: 50%;
         margin-right: 0.2em;
-        margin-top: -0.15em;
       }
       .name {
         font-size: 1.75rem;
@@ -647,9 +659,13 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
       &:hover {
         color: black !important;
       }
+      .scoreRow img {
+        margin-left: 0px;
+      }
     }
     .scores {
       .segments {
+        background-color: transparent !important;
         color: black;
         border: none !important;
         box-shadow: none !important;
@@ -668,8 +684,12 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
               font-style: italic;
               vertical-align: -webkit-baseline-middle;
             }
-            i.circular.icon:hover {
+            i.check.icon:hover {
               background: green;
+              color: white;
+            }
+            i.close.icon:hover {
+              background: red;
               color: white;
             }
           }
@@ -688,16 +708,15 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
   }
   
   .filterForm {
-    padding: 1em 10%;
-    .iconForm {
-      display: block;
-      margin: 0 auto;
-    }
+    padding: 2em;
     .field {
-      width: 30%;
+      width: 20%;
       display: inline-block;
       &:not(:last-child) {
         margin-right: 2em !important;
+      }
+      >.selection.dropdown {
+        min-width: 12em;
       }
     }
   }

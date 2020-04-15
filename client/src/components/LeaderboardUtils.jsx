@@ -10,15 +10,16 @@ export default class LeaderboardUtils extends Component {
         return {
             gender: tournamentActive ? "Men" : "All",
             age: "All",
-            category: tournamentActive ? "Rx" : "All"
+            category: tournamentActive ? "Rx" : "All",
+            wod: "All"
         }
     }
     
     filterLeaderboard = (active, filter, origin, workouts) => {
         let filteredLeaderboard = this.applyFilter(filter, origin)
-        if (active) {
-            const leaderboardUtils = new LeaderboardUtils()
-            filteredLeaderboard = leaderboardUtils.calculateRanking(filteredLeaderboard, workouts)
+        const filteredWorkouts = this.applyFilterWod(filter, workouts)
+        if (active || this.isTournamentFinished(active, origin)) {
+            filteredLeaderboard = this.calculateRanking(filteredLeaderboard, filteredWorkouts)
         }
         return filteredLeaderboard
     }
@@ -29,6 +30,14 @@ export default class LeaderboardUtils extends Component {
                 (filter.gender === 'All' || athlete.gender === filter.gender) &&
                 (filter.age === 'All' || athlete.age === filter.age) &&
                 (filter.category === 'All' || filter.category === athlete.category)
+            )
+        })
+    }
+    
+    applyFilterWod = (filter, workouts) => {
+        return workouts.filter(workout => {
+            return (
+                (filter.wod === 'All' || workout.id === filter.wod)
             )
         })
     }
@@ -135,12 +144,11 @@ export default class LeaderboardUtils extends Component {
         )
     }
 
-    isTournamentFinished = (tournament) => {
+    isTournamentFinished = (active, leaderboard) => {
         return (
-            tournament &&
-            !tournament.active &&
-            tournament.leaderboard.length > 0 &&
-            tournament.leaderboard[0].scores.length > 0
+            active === false &&
+            leaderboard && leaderboard.length > 0 &&
+            leaderboard[0].scores.length > 0
         )
     }
 }

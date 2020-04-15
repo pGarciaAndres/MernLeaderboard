@@ -23,7 +23,8 @@ export default class FilterForm extends Component {
             filter: {
                 gender: this.props.filter.gender,
                 age: this.props.filter.age,
-                category: this.props.active && this.props.filter.category === 'All' ? 'Rx' : this.props.filter.category
+                category: this.props.active && this.props.filter.category === 'All' ? 'Rx' : this.props.filter.category,
+                wod: this.props.filter.wod
             }
         }
     }
@@ -31,7 +32,10 @@ export default class FilterForm extends Component {
     categoryOptions = this.props.active ? 
         [{text: 'Rx', value: 'Rx'}, {text: 'Scaled', value: 'Scaled'}] : 
         [{text: 'All', value: 'All'}, {text: 'Rx', value: 'Rx'}, {text: 'Scaled', value: 'Scaled'}]
-
+    
+    wodOptions = [{text: 'All', value: 'All'}].concat(
+        this.props.workouts.map(wod => { return {text:wod.name, value: wod.id}}))
+        
     handleChange = (e, { name, value }) => {
         let filter = this.state.filter
         if (filter[name] !== value) {
@@ -61,6 +65,12 @@ export default class FilterForm extends Component {
                 name='category'
                 value={this.state.filter.category}
                 options={this.categoryOptions}
+                onChange={this.handleChange}/>
+                {/* Wod */}
+                <Form.Select label='Wod'
+                name='wod'
+                value={this.state.filter.wod}
+                options={this.wodOptions}
                 onChange={this.handleChange}/>
             </Form>
         )

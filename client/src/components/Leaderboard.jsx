@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import AthleteRowWrapper from './AthleteRowWrapper';
-import Controls from './Controls';
-import AthleteRowHeader from './AthleteRowHeader';
+import AthleteRowWrapper from './AthleteRowWrapper'
+import Controls from './Controls'
+import AthleteRowHeader from './AthleteRowHeader'
 import noPhotoMale from '../images/noPhotoMale.jpg'
 import noPhotoFemale from '../images/noPhotoFemale.jpg'
 import LeaderboardUtils from './LeaderboardUtils'
@@ -101,7 +101,12 @@ export default class Leaderboard extends Component {
         let copyLeaderboard = [...this.state.origin]
         const index = copyLeaderboard.indexOf(copyLeaderboard.find(athlete => athlete.id === athleteId))
         if (index >= 0) {
-            copyLeaderboard[index].scores.push(newWodReps)
+            const athleteScoreId = copyLeaderboard[index].scores.findIndex(score => score.id === newWodReps.id)
+            if (athleteScoreId === -1) {
+                copyLeaderboard[index].scores.push(newWodReps)
+            } else {
+                copyLeaderboard[index].scores[athleteScoreId].points = newWodReps.points
+            }
             this.props.handleUpdateTournament(copyLeaderboard)
         }
     }
@@ -117,8 +122,9 @@ export default class Leaderboard extends Component {
     }
     
     render() {
-        const title = this.props.tournament ? this.props.tournament.name : this.props.tournament === null ? noDataLabel : ''
-        const finished = utils.isTournamentFinished(this.props.tournament)
+        const { tournament } = this.props
+        const title = tournament ? tournament.name : tournament === null ? noDataLabel : ''
+        const finished = tournament ? utils.isTournamentFinished(tournament.active, tournament.leaderboard) : false
         return (
             <Fragment>
                 <Controls 
@@ -128,16 +134,22 @@ export default class Leaderboard extends Component {
                     filter={this.state.filter}
                     admin={this.props.admin}
                     workouts={this.state.workouts}
-                    currentNumParticipants={this.state.leaderboard.length}
+                    firstParticipant={this.state.leaderboard[0]}
                     handleFilter={this.handleFilter}
                     handleAddAthlete={this.handleAddAthlete}
                     startCompetition={this.startCompetition}
                     finishCompetition={this.finishCompetition}
-                    disableAddAthlete={utils.disableAddAthlete(this.props.tournament, this.state.leaderboard.length)}
+                    disableAddAthlete={utils.disableAddAthlete(tournament, this.state.leaderboard.length)}
                 />
 
-                {(this.state.active || finished ) && <AthleteRowHeader workouts={this.state.workouts} />}
-                {this.state.leaderboard && <AthleteRowWrapper 
+                {(this.state.active || finished ) && 
+                    <AthleteRowHeader 
+                    workouts={this.state.workouts} 
+                    filter={this.state.filter}
+                />}
+
+                {this.state.leaderboard && 
+                    <AthleteRowWrapper 
                     admin={this.props.admin} 
                     active={this.state.active}
                     finished={finished}

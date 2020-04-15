@@ -112,7 +112,7 @@ export default class SidebarContent extends Component {
                     <div className='empty'>{noWodsLabel}</div> }
 
                     {/* New WOD (Admin) */}
-                    {this.props.admin && !utils.isTournamentFinished(tournament) &&
+                    {this.props.admin && !utils.isTournamentFinished(tournament.active, tournament.leaderboard) &&
                     <Accordion inverted className='accordionWod new wod'>
                       <Accordion.Title active={wodRow === 'ADD'} index={'ADD'} onClick={this.handleOpenWodRow}>
                         <Icon name='dropdown'/>{newWodLabel}
