@@ -11,6 +11,7 @@ import './Modal.scss';
 // Services
 import tournamentService from './services/tournamentService';
 
+const LOCAL_STORAGE_KEY = 'leaderboard.login'
 const utils = new LeaderboardUtils()
 const customStyles = {
   content : {
@@ -29,17 +30,19 @@ class App extends Component {
 
     this.state = {
       modalIsOpen: false,
-      admin: false,
+      admin: this.getLogin(),
       sidebar: false,
       tournaments: [],
       tournamentSelected: undefined
     }
   }
 
-  closeModal = () => {
-    this.setState({
-      modalIsOpen: false
-    })
+  getLogin = () => {
+    return localStorage.getItem(LOCAL_STORAGE_KEY) === "true"
+  }
+
+  setLogin = (value) => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, value)
   }
 
   componentDidMount() {
@@ -61,11 +64,13 @@ class App extends Component {
     })
   }
 
-  handleLoginAdmin = () => {
+  handleLogin = () => {
+    this.setLogin(true)
     this.setState({ admin : true })
   }
 
   handleLogout = () => {
+    this.setLogin(false)
     this.setState({ admin : false })
   }
 
@@ -151,6 +156,12 @@ class App extends Component {
     }, 0) + 1
     return newId
   }
+  
+  closeModal = () => {
+    this.setState({
+      modalIsOpen: false
+    })
+  }
     
   render() {
     return (
@@ -168,7 +179,7 @@ class App extends Component {
             <Header admin={this.state.admin} 
               sidebar={this.state.sidebar} 
               handleSidebar={this.handleSidebar}
-              handleLoginAdmin={this.handleLoginAdmin}
+              handleLogin={this.handleLogin}
               handleLogout={this.handleLogout}
             />
             <TitleBoard />
