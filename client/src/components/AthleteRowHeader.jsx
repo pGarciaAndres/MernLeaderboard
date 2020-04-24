@@ -18,6 +18,11 @@ export default class AthleteRowHeader extends Component {
         })
         this.setState({ workouts })
     }
+    if (this.props.workouts.length !== prevProps.workouts.length) {
+        const workouts = this.props.workouts
+        this.setState({ workouts })
+    }
+
   }
   
     render() {
