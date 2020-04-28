@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import DeleteButton from './DeleteButton';
-import { Icon, Accordion, Segment, Input } from 'semantic-ui-react';
+import { Icon, Accordion, Segment, Input, Popup } from 'semantic-ui-react';
 import goldPosition from '../images/gold.jpg'
 import silverPosition from '../images/silver.jpg'
 import bronzePosition from '../images/bronze.jpg'
 const noScoreLabel = 'No score';
 const addScoreLabel = 'Click to add score';
 const insertScoreLabel = 'Insert here..';
+const headerTooltip = 'Use this format:'
+const bodyTooltip = 'Number of reps: 100<br/>Time: 10:05<br/>Weight: 90,0';
 
 export default class AthleteRow extends Component {
   constructor(props) {
@@ -44,6 +46,7 @@ export default class AthleteRow extends Component {
   }
 
   handleChangeReps = (e) => {
+    e.target.click()
     this.setState({ editReps: e.target.value })
   }
 
@@ -141,7 +144,13 @@ export default class AthleteRow extends Component {
                           }
                           {editableCell === `${athlete.id}-${row.wodId}` && 
                             <Fragment>
-                              <Input autoFocus type="text" value={editReps} placeholder={insertScoreLabel} onChange={this.handleChangeReps} onKeyDown={this.keyPressed}/>
+                              <Popup trigger= { <Input autoFocus value={editReps} placeholder={insertScoreLabel} onChange={this.handleChangeReps} onKeyDown={this.keyPressed}/> }
+                                on='focus' position='bottom left'
+                                header={headerTooltip}
+                                content={bodyTooltip.split("<br/>").map(line => 
+                                  <div>{line}</div>
+                                )}
+                              />
                               {editReps === '' ? 
                                 <i className="large close icon" onClick={this.handleConfirmReps}/> :
                                 <i className="large check icon" onClick={this.handleConfirmReps}/>
@@ -183,7 +192,13 @@ export default class AthleteRow extends Component {
                       }
                       {editableCell === `${athlete.id}-${row.wodId}` && 
                         <div className="ui icon input">
-                          <Input autoFocus type="text" value={editReps} placeholder={insertScoreLabel} onChange={this.handleChangeReps} onKeyDown={this.keyPressed}/>
+                          <Popup trigger= { <Input autoFocus value={editReps} placeholder={insertScoreLabel} onChange={this.handleChangeReps} onKeyDown={this.keyPressed}/> }
+                            header={headerTooltip}
+                            content={bodyTooltip.split("<br/>").map(line => 
+                              <div>{line}</div>
+                            )}
+                            on="focus" position='bottom left'
+                          />
                           {editReps === '' ? 
                             <i className="circular close link icon" onClick={this.handleConfirmReps}/> :
                             <i className="circular check link icon" onClick={this.handleConfirmReps}/>
