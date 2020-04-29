@@ -134,7 +134,7 @@ export default class Leaderboard extends Component {
                     filter={this.state.filter}
                     admin={this.props.admin}
                     workouts={this.state.workouts}
-                    firstParticipant={this.state.leaderboard[0]}
+                    firstParticipant={this.state.origin[0]}
                     handleFilter={this.handleFilter}
                     handleAddAthlete={this.handleAddAthlete}
                     startCompetition={this.startCompetition}

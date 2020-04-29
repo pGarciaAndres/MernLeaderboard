@@ -74,7 +74,7 @@ export default class Controls extends Component {
   }
 
   finishDisabled = () => {
-    return (this.props.firstParticipant.scores.length === 0 )
+    return (!this.props.firstParticipant || this.props.firstParticipant.scores.length === 0 )
   }
     
   render() {
