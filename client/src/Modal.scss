@@ -1,12 +1,19 @@
 $lightBorderline: #e1e1e1;
+$mainModalImage: 'images/crossfit-games-picture.jpg';
 $startModalImage: 'images/startModalBackground.jpg';
 $finishModalImage: 'images/finishModalBackground.jpg';
-// QUBOX
-$customBackgroundColor: #4267b2;
-// BOXZONAZERO
-/* $customBackgroundColor: #396236; */
+$quboxColor: #4267b2;
+$zonazeroColor: #396236;
 
 // Modal
+.QUBOX .ReactModal__Content .modalButton:hover {
+  background-color: $quboxColor;
+  color: white;
+}
+.ZONAZERO .ReactModal__Content .modalButton:hover {
+  background-color: $zonazeroColor;
+  color: white;
+}
 .customModal {
     position: fixed;
     top: 0px;
@@ -37,10 +44,6 @@ $customBackgroundColor: #4267b2;
         color: white;
         display: block;
         margin: auto auto 10px auto;
-      }
-      .modalButton:hover {
-        background-color: $customBackgroundColor;
-        color: white;
       }
       .closeButton {
         background: transparent !important;
@@ -85,6 +88,69 @@ $customBackgroundColor: #4267b2;
     @media (max-width: 767px) and (orientation: landscape) {
       .ReactModal__Content {
         top: 100px !important;
+      }
+    }
+  }
+
+  .mainModal {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    .ReactModal__Content {
+      background: linear-gradient(to left, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 1)), url($mainModalImage) !important;
+      background-size: cover !important;
+      top: 0px !important;
+      left: 0px !important;
+      right: 0px !important;
+      bottom: 0px !important;
+      border-radius: 0px !important;
+      border: 0 !important;
+      p {
+        color: white;
+        font-size: xx-large;
+        font-weight: 700;
+        width: 100%;
+        text-align: center;
+        padding-top: 300px;
+      }
+      p.error {
+        padding-top: 1em;
+        font-size: medium;
+        font-weight: 400;
+        color: red;
+      }
+      .input {
+        margin: 0.5em auto;
+        display: table;
+        font-size: 1.4em;
+        input {
+          text-transform: uppercase;
+          text-align: center;
+          font-family: sans-serif;
+        }
+      }
+      .modalButton {
+        width: 18.5em;
+        font-size: 15px;
+        background: transparent;
+        border: 1px solid white;
+        color: white;
+        display: block;
+        margin: auto auto 10px auto;
+        font-family: sans-serif;
+      }
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .mainModal {
+      .ReactModal__Content {
+        p {
+          padding-top: 200px;
+        }
       }
     }
   }

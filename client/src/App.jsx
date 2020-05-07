@@ -5,23 +5,19 @@ import Header from './components/Header';
 import TitleBoard from './components/TitleBoard';
 import Leaderboard from './components/Leaderboard';
 import LeaderboardUtils from './components/LeaderboardUtils'
-import { Sidebar, Segment } from 'semantic-ui-react';
+import { Sidebar, Segment, Input, Button } from 'semantic-ui-react';
 import './App.scss';
 import './Modal.scss';
 // Services
 import tournamentService from './services/tournamentService';
 
-const LOCAL_STORAGE_KEY = 'leaderboard.login'
+const availbaleBox = ['QUBOX', 'ZONAZERO']
+const mainModalError = 'Box ID not found'
+const mainModalText = 'Insert your BOX ID'
+const startLabel = 'START'
+const STORAGE_LOGIN = 'leaderboard.login'
+const STORAGE_DATABASE = 'leaderboard.database'
 const utils = new LeaderboardUtils()
-const customStyles = {
-  content : {
-    top           : '0px',
-    left          : '0px',
-    right         : '0px',
-    bottom        : '0px',
-    borderRadius  : '0px'
-  }
-}
 Modal.setAppElement('#root')
 
 class App extends Component {
@@ -29,28 +25,37 @@ class App extends Component {
     super(props)
 
     this.state = {
-      modalIsOpen: false,
       admin: this.getLogin(),
       sidebar: false,
       tournaments: [],
-      tournamentSelected: undefined
+      tournamentSelected: undefined,
+      boxId: '',
+      boxSession: this.getBoxSession(),
+      error: false
     }
   }
 
   getLogin = () => {
-    return localStorage.getItem(LOCAL_STORAGE_KEY) === "true"
+    return localStorage.getItem(STORAGE_LOGIN) === "true"
   }
 
   setLogin = (value) => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, value)
+    localStorage.setItem(STORAGE_LOGIN, value)
   }
 
   componentDidMount() {
-    this.getTournaments();    
+    if (availbaleBox.includes(this.state.boxSession)) {
+      this.connectDatabase()
+      this.getTournaments()
+    }
+  }
+
+  connectDatabase = () => {
+    tournamentService.connect(this.state.boxSession)
   }
 
   getTournaments = async() => {
-    const response = await tournamentService.getTournaments();
+    const response = await tournamentService.getTournaments()
     const tournamentSelected = response.length > 0 ? response[response.length-1] : null
     this.setState({
       tournaments: response,
@@ -156,10 +161,49 @@ class App extends Component {
     }, 0) + 1
     return newId
   }
+
+  handleChangeBoxId = (e) => {
+    this.setState({ boxId: e.target.value })
+  }
+
+  keyPressed = (event) => {
+    if (event.key === "Enter") {
+        this.enterBox()
+    }
+  }
+
+  enterBox = () => {
+    if (availbaleBox.includes(this.state.boxId.toUpperCase())) {
+      localStorage.setItem(STORAGE_DATABASE, this.state.boxId.toUpperCase())
+      const boxSession = this.state.boxId.toUpperCase()
+      const boxId = ''
+      this.setState({ boxId, boxSession })
+      tournamentService.connect(boxSession).then((res) => {
+        if (res.success === true) {
+          this.getTournaments()
+        }
+      })
+    } else {
+      const boxId = ''
+      const error = true
+      this.setState({ boxId, error })
+    }
+  }
   
-  closeModal = () => {
-    this.setState({
-      modalIsOpen: false
+  getBoxSession = () => {
+    return localStorage.getItem(STORAGE_DATABASE)
+  }
+
+  closeBoxSession = () => {
+    localStorage.setItem(STORAGE_DATABASE, '')
+    tournamentService.disconnect().then((res) => {
+      if (res.success === true) {
+        this.setState({ 
+          boxSession: '',
+          tournaments: [],
+          tournamentSelected: undefined,
+        })
+      }
     })
   }
     
@@ -173,14 +217,16 @@ class App extends Component {
           handleAddWod={this.handleAddWod}
           handleAddTournament={this.handleAddTournament}
           handleDeleteTournament={this.handleDeleteTournament}
+          closeBoxSession={this.closeBoxSession}
         />
         <Sidebar.Pusher>
-          <div className="App">
+          <div className={`App ${this.state.boxSession}`}>
             <Header admin={this.state.admin} 
               sidebar={this.state.sidebar} 
               handleSidebar={this.handleSidebar}
               handleLogin={this.handleLogin}
               handleLogout={this.handleLogout}
+              boxSession={this.state.boxSession}
             />
             <TitleBoard />
 
@@ -190,11 +236,17 @@ class App extends Component {
               resetFilter={this.state.resetFilter}/>
           </div>
 
-          <Modal isOpen={this.state.modalIsOpen}
-            onRequestClose={this.closeModal}
-            style={customStyles}
-            contentLabel="Example Modal">
-              <button onClick={this.closeModal}>close</button>
+          <Modal isOpen={!availbaleBox.includes(this.state.boxSession)}
+            contentLabel="Example Modal"
+            overlayClassName="mainModal">
+            <p>{mainModalText}</p>
+            <Input value={this.state.boxId} placeholder='BOX ID' onChange={this.handleChangeBoxId} onKeyDown={this.keyPressed}/>
+            <Button
+              className="modalButton"
+              onClick={this.enterBox}>
+                {startLabel}
+            </Button>
+            {this.state.error && <p className='error'>{mainModalError}</p>}
           </Modal>
 
         </Sidebar.Pusher>

@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import { Menu, Accordion, Icon, Sidebar, Button } from 'semantic-ui-react'
+import { Menu, Accordion, Icon, Sidebar, Button, Image } from 'semantic-ui-react'
 import AddWodForm from './AddWodForm'
 import AddTournamentForm from './AddTournamentForm'
 import LeaderboardUtils from './LeaderboardUtils'
+import closeSession from '../images/close-session.png'
+
+const closeSessionLabel = 'CLOSE'
 const leaderboardLabel = 'LEADERBOARD'
 const workoutsLabel = 'WORKOUTS'
 const deleteLabel = 'DELETE'
@@ -71,6 +74,12 @@ export default class SidebarContent extends Component {
 
     return (
         <Sidebar as={Menu} animation='push' direction='right' inverted vertical visible={this.props.sidebar}>
+          
+          <div className="closeSession" onClick={this.props.closeBoxSession}>
+            <Image className="closeSession" src={closeSession} />
+            <span>{closeSessionLabel}</span>
+          </div>
+
           {this.props.tournaments.map(tournament => 
             <Accordion inverted key={tournament.id} className='accordionTournaments'>
             

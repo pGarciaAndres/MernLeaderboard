@@ -1,12 +1,10 @@
 $darkBackground: #282c34;
 $greyBackground: #444954;
-// QUBOX
-$customBackground: #4267b2;
-// BOXZONAZERO
-/* $customBackground: #396236; */
 $lightBorderline: #e1e1e1;
 $athleteFormBackground: 'images/athleteFormBackground.jpg';
 $filterFormBackground: 'images/filterFormBackground.jpg';
+$quboxColor: #4267b2;
+$zonazeroColor: #396236;
 
 #root .ui.segment {
   border: none;
@@ -26,6 +24,23 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 }
 
 /* Header */
+.QUBOX {
+  .header .logo {
+    margin-top: 35px;
+  }
+  .pwdButton:enabled i {
+    color: $quboxColor;
+  }
+}
+.ZONAZERO {
+  .header .logo {
+    max-width: 6em;
+    margin-top: 10px;
+  }
+  .pwdButton:enabled i {
+    color: $zonazeroColor;
+  }
+}
 .header {
   width: 100%;
   text-align: left;
@@ -33,11 +48,6 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
     width: 40%;
     margin-left: 0.5em;
     max-width: 10em;
-    // QUBOX
-    margin-top: 35px;
-    // BOXZONAZERO
-    /* max-width: 6em;
-    margin-top: 10px; */
   }
   button.menu {
     float: right;
@@ -90,9 +100,6 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
       margin-top: 5px;
       margin-left: -2em;
       background: transparent !important;
-      &:enabled i {
-        color: $customBackground;
-      }
     }
     .pwdButton:hover {
       background: transparent;
@@ -114,10 +121,15 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 }
 
 /* Controls */
+.QUBOX .controls {
+  background: $quboxColor;
+}
+.ZONAZERO .controls {
+  background: $zonazeroColor;
+}
 .controls {
   height: 3.5em;
   width: 100%;
-  background: $customBackground;
   border-bottom: 1px solid $lightBorderline;
   .tournament {
     float: left;
@@ -322,6 +334,26 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 }
 
 /* Accordion Sidebar */
+.closeSession {
+  width: 100%;
+  color: white;
+  float: right;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  span {
+    float: right;
+    margin: 7px;
+  }
+  img {
+    filter: invert(1);
+    width: 40px;
+    padding: 0;
+  }
+}
+.closeSession:hover {
+  background: rgba(255,255,255,.08);
+}
 .accordionTournaments {
   float: left;
   width: 100%;
@@ -397,6 +429,14 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 }
 
 /* Form */
+.QUBOX .ui.form .createButton:hover {
+  background: $quboxColor;
+  color: white;
+}
+.ZONAZERO .ui.form .createButton:hover {
+  background: $zonazeroColor;
+  color: white;
+}
 .ui.form {
   div {
     &.field, &.fields {
@@ -418,10 +458,6 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
     margin-top: 0.5em;
     color: black;
     width: 50%;
-    &:hover {
-      background: $customBackground;
-      color: white;
-    }
     &.disabled {
       opacity: 0;
     }
@@ -506,16 +542,16 @@ $filterFormBackground: 'images/filterFormBackground.jpg';
 
 /* Desktop */
 @media only screen and (min-width: 768px) {
+  .QUBOX .header .logo {
+    margin: 1em 0 0; 
+    max-width: 10em;
+  }
+  .ZONAZERO .header .logo {
+    margin: 0.2em 0 0; 
+    max-width: 4em !important;
+  }
   .header {
     padding: 0 2%;
-    .logo {
-      // QUBOX
-      margin: 1em 0 0; 
-      max-width: 10em;
-      // BOXZONAZERO
-      /* margin: 0.2em 0 0; 
-      max-width: 4.5em !important; */
-    }
     button.menu {
       margin: 16px 0 16px 16px;
       i {

@@ -81,9 +81,7 @@ export default class AdminLogin extends Component {
                     </Fragment>
                 }
                 {this.props.admin && 
-                    <Fragment>
-                        <Image className="adminButton logout" src={adminLogout} onClick={this.handleLogout} />
-                    </Fragment>
+                    <Image className="adminButton logout" src={adminLogout} onClick={this.handleLogout} />
                 }
                 
             </div>

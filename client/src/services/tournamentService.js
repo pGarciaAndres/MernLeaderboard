@@ -19,5 +19,15 @@ export default {
     deleteTournament: async (id) => {
         let res = await axios.post('/api/deleteTournament/' + id);
         return res.data;
-    }
+    },
+
+    connect: async (id) => {
+        let res = await axios.post('/api/connectDatabase/' + id);
+        return res.data;
+    },
+
+    disconnect: async() => {
+        let res = await axios.get('/api/disconnectDatabase');
+        return res.data;
+    },
 }
