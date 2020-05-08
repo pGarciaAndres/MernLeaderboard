@@ -100,7 +100,8 @@ $zonazeroColor: #396236;
     bottom: 0px;
     .ReactModal__Content {
       background: linear-gradient(to left, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 1)), url($mainModalImage) !important;
-      background-size: cover !important;
+      background-size: auto !important;
+      background-position: center center !important;
       top: 0px !important;
       left: 0px !important;
       right: 0px !important;
