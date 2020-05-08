@@ -69,13 +69,18 @@ export default class SidebarContent extends Component {
       this.props.handleAddTournament(tournament)
     }
 
+    handleCloseBoxSession = () => {
+      this.setState({ sidebarRow: 0, workoutsRow: 0, wodRow: 0 })
+      this.props.closeBoxSession()
+    }
+
   render() {
     const { sidebarRow, workoutsRow, wodRow } = this.state
 
     return (
         <Sidebar as={Menu} animation='push' direction='right' inverted vertical visible={this.props.sidebar}>
           
-          <div className="closeSession" onClick={this.props.closeBoxSession}>
+          <div className="closeSession" onClick={this.handleCloseBoxSession}>
             <Image className="closeSession" src={closeSession} />
             <span>{closeSessionLabel}</span>
           </div>
