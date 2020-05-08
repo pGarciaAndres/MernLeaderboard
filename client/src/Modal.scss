@@ -126,13 +126,14 @@ $zonazeroColor: #396236;
         display: table;
         font-size: 1.4em;
         input {
+          width: 270px;
           text-transform: uppercase;
           text-align: center;
           font-family: sans-serif;
         }
       }
       .modalButton {
-        width: 18.5em;
+        width: 270px;
         font-size: 15px;
         background: transparent;
         border: 1px solid white;
