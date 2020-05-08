@@ -198,10 +198,11 @@ class App extends Component {
     localStorage.setItem(STORAGE_DATABASE, '')
     tournamentService.disconnect().then((res) => {
       if (res.success === true) {
-        this.setState({ 
+        this.setState({
           boxSession: '',
           tournaments: [],
           tournamentSelected: undefined,
+          sidebar: false
         })
       }
     })
