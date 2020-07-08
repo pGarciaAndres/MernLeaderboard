@@ -5,6 +5,7 @@ import noPhotoFemale from '../images/noPhotoFemale.jpg'
 import locale from '../locale/es.json'
 
 const newAthleteFrom = ''
+const boxSession = localStorage.getItem('leaderboard.database')
 
 const genderOptions = [
     {text: locale.menLabel, value: 'Men'},
@@ -94,7 +95,7 @@ export default class AddAthleteForm extends Component {
             onChange={this.handleChange}/>
             {/* Box */}
             <Form.Input label={locale.boxLabel}
-            placeholder={locale.boxPlaceholder} 
+            placeholder={locale.boxPlaceholder + boxSession}
             name='from' value={athlete.from} 
             onChange={this.handleChange}/>
             {/* Photo */}

@@ -8,6 +8,7 @@ import LeaderboardUtils from './LeaderboardUtils'
 import locale from '../locale/es.json'
 
 const utils = new LeaderboardUtils()
+const boxSession = localStorage.getItem('leaderboard.database')
 const noDataLabel = locale.noDataLabel
 const initialValue = {
     active: false,
@@ -84,7 +85,7 @@ export default class Leaderboard extends Component {
                 gender: !!athlete.gender ? athlete.gender : 'Men',
                 age: !!athlete.age ? athlete.age : '(18-35)',
                 category: athlete.category,
-                from: athlete.from,
+                from: athlete.from ? athlete.from : boxSession,
                 scores: []
             }
             const newLeaderboard = [...this.state.origin, newAthlete]

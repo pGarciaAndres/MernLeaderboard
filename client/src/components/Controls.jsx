@@ -5,6 +5,8 @@ import FilterForm from './FilterForm'
 import Modal from 'react-modal'
 import locale from '../locale/es.json'
 
+const boxSession = localStorage.getItem('leaderboard.database')
+
 export default class Controls extends Component {
   constructor(props) {
     super(props)
@@ -130,7 +132,7 @@ export default class Controls extends Component {
 
         <Modal isOpen={this.state.modalStartIsOpen}
           onRequestClose={this.closeModalStart}
-          overlayClassName="customModal start">
+          overlayClassName={`customModal start ${boxSession}`}>
             <Button className="closeButton" onClick={this.closeModalStart}>x</Button>
             <p>{locale.startModalText}</p>
             <Button
@@ -142,7 +144,7 @@ export default class Controls extends Component {
 
         <Modal isOpen={this.state.modalFinishIsOpen}
           onRequestClose={this.closeModalFinish}
-          overlayClassName="customModal finish">
+          overlayClassName={`customModal finish ${boxSession}`}>
             <Button className="closeButton" onClick={this.closeModalFinish}>x</Button>
             <p>{locale.finishModalText}</p>
             <Button
