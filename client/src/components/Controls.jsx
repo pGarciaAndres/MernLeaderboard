@@ -3,10 +3,7 @@ import { Button, Icon } from 'semantic-ui-react'
 import AddAthleteForm from './AddAthleteForm'
 import FilterForm from './FilterForm'
 import Modal from 'react-modal'
-
-const yesLabel = 'YES'
-const startModalText = "Once the competition starts you can't edit or include more participants, do you want to start?"
-const finishModalText = "Are you sure you want to finish this competition permanently?"
+import locale from '../locale/es.json'
 
 export default class Controls extends Component {
   constructor(props) {
@@ -135,11 +132,11 @@ export default class Controls extends Component {
           onRequestClose={this.closeModalStart}
           overlayClassName="customModal start">
             <Button className="closeButton" onClick={this.closeModalStart}>x</Button>
-            <p>{startModalText}</p>
+            <p>{locale.startModalText}</p>
             <Button
               className="modalButton"
               onClick={this.startCompetition}>
-                {yesLabel}
+                {locale.yesUpperLabel}
             </Button>
         </Modal>
 
@@ -147,11 +144,11 @@ export default class Controls extends Component {
           onRequestClose={this.closeModalFinish}
           overlayClassName="customModal finish">
             <Button className="closeButton" onClick={this.closeModalFinish}>x</Button>
-            <p>{finishModalText}</p>
+            <p>{locale.finishModalText}</p>
             <Button
               className="modalButton"
               onClick={this.finishCompetition}>
-                {yesLabel}
+                {locale.yesUpperLabel}
             </Button>
         </Modal>
       </React.Fragment>

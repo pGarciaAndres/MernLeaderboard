@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Form, Button, Message } from 'semantic-ui-react';
-const nameLabel = 'Insert name';
-const participantsLabel = 'Limit of participants'
-const createLabel = 'Create';
-const maxTournaments = 2;
+import { Form, Button, Message } from 'semantic-ui-react'
+import locale from '../locale/es.json'
 
-export default class addTournamentForm extends Component {
+const maxTournaments = 5;
+
+export default class AddTournamentForm extends Component {
     constructor(props) {
         super(props)
 
@@ -49,7 +48,7 @@ export default class addTournamentForm extends Component {
       <Form error unstackable onSubmit={this.addTournament} className="tournamentForm">
         {/* Name */}
         <Form.Input 
-        placeholder={nameLabel}
+        placeholder={locale.insertNameLabel}
         name='name'
         id='tName'
         onChange={this.handleChange}
@@ -57,7 +56,7 @@ export default class addTournamentForm extends Component {
         maxLength={14}/>
         {/* Participants */}
         <Form.Input 
-        placeholder={participantsLabel}
+        placeholder={locale.participantsLabel}
         type='number'
         min="5"
         step="5"
@@ -66,11 +65,11 @@ export default class addTournamentForm extends Component {
         onChange={this.handleChange}
         autoComplete="off"/>
 
-        <Button type='submit' className='createButton' disabled={this.disabledAddTournament(tournament)}>{createLabel}</Button>
+        <Button type='submit' className='createButton' disabled={this.disabledAddTournament(tournament)}>{locale.createLabel}</Button>
         {this.limitOfTournaments() &&
           <Message error
-          header='Cannot create!'
-          content='Maximum number of competition.' />
+          header={locale.createError}
+          content={locale.maxNumError} />
         }
       </Form>
     )

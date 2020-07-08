@@ -1,0 +1,81 @@
+{
+"App": "",
+    "startLabel": "START",
+    "mainModalError": "Box ID not found",
+    "mainModalText": "START SESSION",
+    "submitLabel": "Save",
+
+"AddAthleteForm": "",
+    "menLabel": "Men",
+    "womenLabel": "Women",
+    "nameLabel": "Name",
+    "namePlaceholder": "Insert NAME here...",
+    "genderLabel": "Gender",
+    "genderPlaceholder": "Select...",
+    "ageLabel": "Age",
+    "agePlaceholder": "Select...",
+    "boxLabel": "Box",
+    "boxPlaceholder": "From...",
+    "photoLabel": "Photo",
+    "photoPlaceholder": "URL Photo...",
+    "rxLabel": "Rx",
+    "scLabel": "Scaled",
+    
+"AddTournamentForm": "",
+    "insertNameLabel": "Tournament name",
+    "participantsLabel": "Limit of participants",
+    "createLabel": "Create",
+    "createError": "Can't create!",
+    "maxNumError": "Maximum number of competition.",
+    
+    "AddWodForm": "",
+        "wodNameLabel": "WOD Name",
+        "rxTextLabel": "Describe RX routine...",
+        "scTextLabel": "Describe Scaled routine...",
+        "submitWodLabel": "Save",
+    
+    "AdminLogin": "",
+        "pwdPlaceholder": "password",
+    
+    "AthleteRow": "",
+        "noScoreLabel": "No score",
+        "addScoreLabel": "Click to add score",
+        "insertScoreLabel": "Insert here..",
+        "headerTooltip": "Use this format:",
+        "bodyTooltip": "Number of reps: 100<br/>Time: 10:05<br/>Weight: 90,0",
+    
+    "AthleteRowHeader": "",
+        "rankingLabel": "RANK",
+        "athletesLabel": "ATHLETES",
+        "pointsLabel": "POINTS",
+    
+    "Controls": "",
+        "yesUpperLabel": "YES",
+        "startModalText": "Once the competition starts you can't edit or include more participants, do you want to start?",
+        "finishModalText": "Are you sure you want to finish this competition permanently?",
+    
+    "FilterForm": "",
+        "allLabel": "All",
+        "categoryLabel": "Category",
+        "wodLabel": "Wod",
+
+    "Leaderboard": "",
+        "noDataLabel": "No data",
+
+    "SidebarContent": "",
+        "closeSessionLabel": "CLOSE",
+        "leaderboardLabel": "LEADERBOARD",
+        "workoutsLabel": "WORKOUTS",
+        "deleteLabel": "DELETE",
+        "noTournamentLabel": "No Tournaments",
+        "noWodsLabel": "No data",
+        "newWodLabel": "NEW",
+        "sureLabel": "Are you sure?",
+        "yesLabel": "Yes",
+        "newTournamentLabel": "CREATE TOURNAMENT",
+
+    "TitleBoard": "",
+        "titleBoardLabel": "LEADERBOARD"
+
+
+}

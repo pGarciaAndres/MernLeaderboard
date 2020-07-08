@@ -1,14 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import DeleteButton from './DeleteButton';
-import { Icon, Accordion, Segment, Input, Popup } from 'semantic-ui-react';
+import { Icon, Accordion, Segment, Input, Popup } from 'semantic-ui-react'
 import goldPosition from '../images/gold.jpg'
 import silverPosition from '../images/silver.jpg'
 import bronzePosition from '../images/bronze.jpg'
-const noScoreLabel = 'No score';
-const addScoreLabel = 'Click to add score';
-const insertScoreLabel = 'Insert here..';
-const headerTooltip = 'Use this format:'
-const bodyTooltip = 'Number of reps: 100<br/>Time: 10:05<br/>Weight: 90,0';
+import locale from '../locale/es.json'
 
 export default class AthleteRow extends Component {
   constructor(props) {
@@ -144,10 +140,10 @@ export default class AthleteRow extends Component {
                           }
                           {editableCell === `${athlete.id}-${row.wodId}` && 
                             <Fragment>
-                              <Popup trigger= { <Input autoFocus value={editReps} placeholder={insertScoreLabel} onChange={this.handleChangeReps} onKeyDown={this.keyPressed}/> }
+                              <Popup trigger= { <Input autoFocus value={editReps} placeholder={locale.insertScoreLabel} onChange={this.handleChangeReps} onKeyDown={this.keyPressed}/> }
                                 on='focus' position='bottom left'
-                                header={headerTooltip}
-                                content={bodyTooltip.split("<br/>").map(line => 
+                                header={locale.headerTooltip}
+                                content={locale.bodyTooltip.split("<br/>").map(line => 
                                   <div>{line}</div>
                                 )}
                               />
@@ -186,15 +182,15 @@ export default class AthleteRow extends Component {
                     <Segment key={`${athlete.id}-${row.wodId}`} className={this.props.admin && !this.props.finished ? 'editableCell' : ''}>
                       {editableCell !== `${athlete.id}-${row.wodId}` && 
                         <span onClick={() => this.handleSetEditable(athlete.id, row.wodId)}>
-                          {row.reps === "0" && (this.props.admin ? addScoreLabel : noScoreLabel)}
+                          {row.reps === "0" && (this.props.admin ? locale.addScoreLabel : locale.noScoreLabel)}
                           {row.reps !== "0" && (`${row.wodRanking}th ${row.reps}`)}
                         </span>
                       }
                       {editableCell === `${athlete.id}-${row.wodId}` && 
                         <div className="ui icon input">
-                          <Popup trigger= { <Input autoFocus value={editReps} placeholder={insertScoreLabel} onChange={this.handleChangeReps} onKeyDown={this.keyPressed}/> }
-                            header={headerTooltip}
-                            content={bodyTooltip.split("<br/>").map(line => 
+                          <Popup trigger= { <Input autoFocus value={editReps} placeholder={locale.insertScoreLabel} onChange={this.handleChangeReps} onKeyDown={this.keyPressed}/> }
+                            header={locale.headerTooltip}
+                            content={locale.bodyTooltip.split("<br/>").map(line => 
                               <div>{line}</div>
                             )}
                             on="focus" position='bottom left'

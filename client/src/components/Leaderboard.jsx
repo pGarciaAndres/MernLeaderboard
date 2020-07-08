@@ -5,9 +5,10 @@ import AthleteRowHeader from './AthleteRowHeader'
 import noPhotoMale from '../images/noPhotoMale.jpg'
 import noPhotoFemale from '../images/noPhotoFemale.jpg'
 import LeaderboardUtils from './LeaderboardUtils'
+import locale from '../locale/es.json'
 
 const utils = new LeaderboardUtils()
-const noDataLabel = 'No data'
+const noDataLabel = locale.noDataLabel
 const initialValue = {
     active: false,
     leaderboard: [],

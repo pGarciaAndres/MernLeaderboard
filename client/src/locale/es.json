@@ -1,0 +1,80 @@
+{
+"App": "",
+    "startLabel": "EMPEZAR",
+    "mainModalError": "Box ID no encontrado",
+    "mainModalText": "Iniciar sesión",
+    "submitLabel": "Guardar",
+
+"AddAthleteForm": "",
+    "menLabel": "Hombre",
+    "womenLabel": "Mujer",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Insertar NOMBRE...",
+    "genderLabel": "Sexo",
+    "genderPlaceholder": "Seleccionar...",
+    "ageLabel": "Edad",
+    "agePlaceholder": "Seleccionar...",
+    "boxLabel": "Box",
+    "boxPlaceholder": "Insertar BOX, Ciudad o País...",
+    "photoLabel": "Foto",
+    "photoPlaceholder": "Elegir foto...",
+    "rxLabel": "Rx",
+    "scLabel": "Escalado",
+    
+"AddTournamentForm": "",
+    "insertNameLabel": "Nombre del torneo",
+    "participantsLabel": "Límite de participantes",
+    "createLabel": "Crear",
+    "createError": "Imposible crear!",
+    "maxNumError": "Número máximo de competiciones.",
+    
+    "AddWodForm": "",
+        "wodNameLabel": "Inserta un nombre...",
+        "rxTextLabel": "Describe rutina RX...",
+        "scTextLabel": "Describe rutina Escalado...",
+        "submitWodLabel": "Guardar",
+    
+    "AdminLogin": "",
+        "pwdPlaceholder": "contraseña",
+    
+    "AthleteRow": "",
+        "noScoreLabel": "Sin datos",
+        "addScoreLabel": "Click aquí",
+        "insertScoreLabel": "Insertar..",
+        "headerTooltip": "Usa este formato:",
+        "bodyTooltip": "Número de reps: 100<br/>Tiempo: 10:05<br/>Peso: 90,0",
+    
+    "AthleteRowHeader": "",
+        "rankingLabel": "",
+        "athletesLabel": "ATLETAS",
+        "pointsLabel": "PUNTOS",
+    
+    "Controls": "",
+        "yesUpperLabel": "SI",
+        "startModalText": "Una vez comience la competición no podrás editar o incluir participantes, quieres continuar?",
+        "finishModalText": "¿Estás seguro de que quieres dar por finalizada esta competición?",
+    
+    "FilterForm": "",
+        "allLabel": "Todos",
+        "categoryLabel": "Categoría",
+        "wodLabel": "Wod",
+
+    "Leaderboard": "",
+        "noDataLabel": "Sin datos",
+
+    "SidebarContent": "",
+        "closeSessionLabel": "SALIR",
+        "leaderboardLabel": "CLASIFICACIÓN",
+        "workoutsLabel": "WODs",
+        "deleteLabel": "ELIMINAR",
+        "noTournamentLabel": "No hay competiciones",
+        "noWodsLabel": "Sin datos",
+        "newWodLabel": "CREAR",
+        "sureLabel": "¿Estás seguro?",
+        "yesLabel": "Si",
+        "newTournamentLabel": "CREAR COMPETICIÓN",
+
+    "TitleBoard": "",
+        "titleBoardLabel": "CLASIFICACIÓN"
+
+}

@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import { Image, Input, Icon, Button } from 'semantic-ui-react';
-import * as firebase from 'firebase';
+import { Image, Input, Icon, Button } from 'semantic-ui-react'
+import locale from '../locale/es.json'
+import * as firebase from 'firebase'
 import adminLogin from '../images/adminLogin.png'
 import adminLogout from '../images/adminLogout.png'
 
-const userLogin = 'garciandres.15@gmail.com';
+const userLogin = 'garciandres.15@gmail.com'
 
 export default class AdminLogin extends Component {
     constructor(props) {
@@ -12,16 +13,22 @@ export default class AdminLogin extends Component {
 
         this.state = {
             showLogin: false,
-            pwd: "",
-            error: ""
+            pwd: '',
+            error: ''
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.admin === null && this.state.showLogin === true) {
+            this.setState({ showLogin: false })
         }
     }
 
     showLogin = () => {
         let showLogin = this.state.showLogin
-        let pwd = ""
+        let pwd = ''
         showLogin = !showLogin
-        this.setState({showLogin, pwd})
+        this.setState({ showLogin, pwd })
     }
 
     handleChange = (e) => {
@@ -44,14 +51,14 @@ export default class AdminLogin extends Component {
                 this.setState({
                     error: null,
                     showLogin: false,
-                    pwd: ""
+                    pwd: ''
                 });
                 this.props.loginAdmin()
             }).catch(error => {
                 console.log(`Error ${error.code}: ${error.message}`);
                 this.setState({
                     showLogin: false,
-                    pwd: "",
+                    pwd: '',
                     error: `Invalid password`
                 });
             })
@@ -72,7 +79,7 @@ export default class AdminLogin extends Component {
                         <Image className="adminButton" src={adminLogin} onClick={this.showLogin} />
                         {showLogin &&
                             <Fragment>
-                                <Input autoFocus type="password" placeholder='password' name='password' onChange={this.handleChange} onKeyDown={this.keyPressed}/>
+                                <Input autoFocus type="password" placeholder={locale.pwdPlaceholder} name='password' onChange={this.handleChange} onKeyDown={this.keyPressed}/>
                                 <Button icon className="pwdButton" disabled={pwd.length === 0 } onClick={this.handleLogin}>
                                     <Icon className="large check icon"/>
                                 </Button>

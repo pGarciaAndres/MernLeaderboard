@@ -53,7 +53,7 @@ $zonazeroColor: #396236;
         font-weight: 300;
         float: right;
         padding: 0;
-        margin-right: 0.5em;
+        margin-right: 0.2em;
       }
     }
 
@@ -113,8 +113,8 @@ $zonazeroColor: #396236;
         font-size: xx-large;
         font-weight: 700;
         width: 100%;
-        text-align: center;
-        padding-top: 300px;
+        text-align: left;
+        margin: 0.5em 0 0;
       }
       p.error {
         padding-top: 1em;
@@ -129,7 +129,6 @@ $zonazeroColor: #396236;
         input {
           width: 270px;
           text-transform: uppercase;
-          text-align: center;
           font-family: sans-serif;
         }
       }
@@ -143,6 +142,23 @@ $zonazeroColor: #396236;
         margin: auto auto 10px auto;
         font-family: sans-serif;
       }
+      .mainModalContainer {
+        margin: 22em auto;
+        width: fit-content;
+        .mainModalLeft {
+          float: left;
+          border-right: 1px solid white;
+          img {
+            filter: invert(1);
+            width: 90%;
+            float: right;
+          }
+        }
+        .mainModalRight {
+          float: left;
+          padding-left: 2em;
+        }
+      }
     }
   }
 
@@ -150,9 +166,41 @@ $zonazeroColor: #396236;
   @media (max-width: 767px) {
     .mainModal {
       .ReactModal__Content {
-        p {
-          padding-top: 200px;
+        
+        .mainModalContainer {
+          margin: 12em auto;
+          .mainModalLeft {
+            text-align: center;
+            width: 100%;
+            border: none;
+            img {
+              width: 150px;
+              float: none;
+            }
+          }
+          .mainModalRight {
+            float: left;
+            text-align: center;
+            width: 100%;
+            padding: 0;
+            p {
+              text-align: center;
+              margin: 0;
+              text-transform: uppercase;
+            }
+            .input {
+              margin: 0.3em auto;
+              font-size: 1.2em;
+              input {
+                width: 250px;
+              }
+            }
+            .modalButton {
+              width: 250px;
+            }
+          }
         }
+        
       }
     }
   }

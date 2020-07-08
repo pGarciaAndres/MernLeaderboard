@@ -4,17 +4,18 @@ import AddWodForm from './AddWodForm'
 import AddTournamentForm from './AddTournamentForm'
 import LeaderboardUtils from './LeaderboardUtils'
 import closeSession from '../images/close-session.png'
+import locale from '../locale/es.json'
 
-const closeSessionLabel = 'CLOSE'
-const leaderboardLabel = 'LEADERBOARD'
-const workoutsLabel = 'WORKOUTS'
-const deleteLabel = 'DELETE'
-const noTournamentLabel = 'No Tournaments'
-const noWodsLabel = "Oh, there's no Wod yet"
-const newWodLabel = 'NEW'
-const sureLabel = 'Are you sure?'
-const yesLabel = 'Yes'
-const newTournamentLabel = 'CREATE TOURNAMENT'
+const closeSessionLabel = locale.closeSessionLabel
+const leaderboardLabel = locale.leaderboardLabel
+const workoutsLabel = locale.workoutsLabel
+const deleteLabel = locale.deleteLabel
+const noTournamentLabel = locale.noTournamentLabel
+const noWodsLabel = locale.noWodsLabel
+const newWodLabel = locale.newWodLabel
+const sureLabel = locale.sureLabel
+const yesLabel = locale.yesLabel
+const newTournamentLabel = locale.newTournamentLabel
 const utils = new LeaderboardUtils()
 
 export default class SidebarContent extends Component {

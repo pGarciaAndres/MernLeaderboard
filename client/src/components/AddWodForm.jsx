@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
-import { Accordion, Form, Button } from 'semantic-ui-react';
-const nameLabel = 'Insert name';
-const rxLabel = 'Rx';
-const rxTextLabel = 'Describe RX routine...';
-const scLabel = 'Scaled';
-const scTextLabel = 'Describe Scaled routine...' ;
-const submitLabel = 'Save';
+import { Accordion, Form, Button } from 'semantic-ui-react'
+import locale from '../locale/es.json'
 
 export default class AddWodForm extends Component {
     constructor(props) {
@@ -46,28 +41,29 @@ export default class AddWodForm extends Component {
       <Form unstackable onSubmit={this.addWod} className="wodForm">
         {/* Name */}
         <Form.Input 
-        placeholder={nameLabel}
+        placeholder={locale.wodNameLabel}
         name='name'
         onChange={this.handleChange}
-        autoComplete="off"/>
+        autoComplete="off"
+        maxLength={17}/>
         {/* Rx */}
-        <div>{rxLabel}</div>
+        <div>{locale.rxLabel}</div>
         <Accordion.Content>
           <Form.TextArea 
-          placeholder={rxTextLabel} 
+          placeholder={locale.rxTextLabel} 
           name='rx'
           onChange={this.handleChange}/>
         </Accordion.Content>
         {/* Sc */}
-        <div>{scLabel}</div>
+        <div>{locale.scLabel}</div>
         <Accordion.Content >
           <Form.TextArea 
-          placeholder={scTextLabel} 
+          placeholder={locale.scTextLabel} 
           name='sc'
           onChange={this.handleChange}/>
         </Accordion.Content>
 
-        <Button type='submit' className='createButton' disabled={this.disabledCreateWod(wod)}>{submitLabel}</Button>
+        <Button type='submit' className='createButton' disabled={this.disabledCreateWod(wod)}>{locale.submitWodLabel}</Button>
       </Form>
     )
   }

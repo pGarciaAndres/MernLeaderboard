@@ -5,16 +5,15 @@ import Header from './components/Header';
 import TitleBoard from './components/TitleBoard';
 import Leaderboard from './components/Leaderboard';
 import LeaderboardUtils from './components/LeaderboardUtils'
+import mainLogo from './images/logo.png'
 import { Sidebar, Segment, Input, Button } from 'semantic-ui-react';
 import './App.scss';
 import './Modal.scss';
+import locale from './locale/es.json';
 // Services
 import tournamentService from './services/tournamentService';
 
 const availbaleBox = ['QUBOX', 'ZONAZERO']
-const mainModalError = 'Box ID not found'
-const mainModalText = 'Insert your BOX ID'
-const startLabel = 'START'
 const STORAGE_LOGIN = 'leaderboard.login'
 const STORAGE_DATABASE = 'leaderboard.database'
 const utils = new LeaderboardUtils()
@@ -175,9 +174,11 @@ class App extends Component {
   enterBox = () => {
     if (availbaleBox.includes(this.state.boxId.toUpperCase())) {
       localStorage.setItem(STORAGE_DATABASE, this.state.boxId.toUpperCase())
+      const admin = false
       const boxSession = this.state.boxId.toUpperCase()
       const boxId = ''
-      this.setState({ boxId, boxSession })
+      const error = false
+      this.setState({ admin, boxId, boxSession, error })
       tournamentService.connect(boxSession).then((res) => {
         if (res.success === true) {
           this.getTournaments()
@@ -196,9 +197,11 @@ class App extends Component {
 
   closeBoxSession = () => {
     localStorage.setItem(STORAGE_DATABASE, '')
+    localStorage.setItem(STORAGE_LOGIN, false)
     tournamentService.disconnect().then((res) => {
       if (res.success === true) {
         this.setState({
+          admin: null,
           boxSession: '',
           tournaments: [],
           tournamentSelected: undefined,
@@ -238,16 +241,22 @@ class App extends Component {
           </div>
 
           <Modal isOpen={!availbaleBox.includes(this.state.boxSession)}
-            contentLabel="Example Modal"
             overlayClassName="mainModal">
-            <p>{mainModalText}</p>
-            <Input value={this.state.boxId} placeholder='BOX ID' onChange={this.handleChangeBoxId} onKeyDown={this.keyPressed}/>
-            <Button
-              className="modalButton"
-              onClick={this.enterBox}>
-                {startLabel}
-            </Button>
-            {this.state.error && <p className='error'>{mainModalError}</p>}
+            <div className="mainModalContainer">
+              <div className="mainModalLeft">
+                <img  alt='' src={mainLogo}/>
+              </div>
+              <div className="mainModalRight">
+                <p>{locale.mainModalText}</p>
+                <Input value={this.state.boxId} placeholder='BOX ID' onChange={this.handleChangeBoxId} onKeyDown={this.keyPressed}/>
+                <Button
+                  className="modalButton"
+                  onClick={this.enterBox}>
+                    {locale.startLabel}
+                </Button>
+                {this.state.error && <p className='error'>{locale.mainModalError}</p>}
+              </div>
+            </div>
           </Modal>
 
         </Sidebar.Pusher>

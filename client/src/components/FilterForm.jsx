@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import { Form } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react'
 import filterIcon from '../images/filterIcon.jpg'
+import locale from '../locale/es.json'
 
 const genderOptions = [
-    {text: 'All', value: 'All'},
-    {text: 'Men', value: 'Men'},
-    {text: 'Women', value: 'Women'}
+    {text: locale.allLabel, value: 'All'},
+    {text: locale.menLabel, value: 'Men'},
+    {text: locale.womenLabel, value: 'Women'}
 ]
 
 const ageOptions = [
-    {text: 'All', value: 'All'},
+    {text: locale.allLabel, value: 'All'},
     {text: '(18-35)', value: '(18-35)'},
     {text: '(Master +35)', value: '(Master +35)'},
     {text: '(Teens)', value: '(Teens)'}
@@ -30,10 +31,10 @@ export default class FilterForm extends Component {
     }
 
     categoryOptions = this.props.active ? 
-        [{text: 'Rx', value: 'Rx'}, {text: 'Scaled', value: 'Scaled'}] : 
-        [{text: 'All', value: 'All'}, {text: 'Rx', value: 'Rx'}, {text: 'Scaled', value: 'Scaled'}]
+        [{text: locale.rxLabel, value: 'Rx'}, {text: locale.scLabel, value: 'Scaled'}] : 
+        [{text: locale.allLabel, value: 'All'}, {text: locale.rxLabel, value: 'Rx'}, {text: locale.scLabel, value: 'Scaled'}]
     
-    wodOptions = [{text: 'All', value: 'All'}].concat(
+    wodOptions = [{text: locale.allLabel, value: 'All'}].concat(
         this.props.workouts.map(wod => { return {text:wod.name, value: wod.id}}))
         
     handleChange = (e, { name, value }) => {
@@ -49,25 +50,25 @@ export default class FilterForm extends Component {
             <Form unstackable className="filterForm">
                 <img className='iconForm' alt='' src={filterIcon}/>
                 {/* Gender */}
-                <Form.Select label='Gender'
+                <Form.Select label={locale.genderLabel}
                 name='gender'
                 value={this.state.filter.gender}
                 options={genderOptions}
                 onChange={this.handleChange}/>
                 {/* Age */}
-                <Form.Select label='Age'
+                <Form.Select label={locale.ageLabel}
                 name='age'
                 value={this.state.filter.age}
                 options={ageOptions}
                 onChange={this.handleChange}/>
                 {/* Category */}
-                <Form.Select label='Category'
+                <Form.Select label={locale.categoryLabel}
                 name='category'
                 value={this.state.filter.category}
                 options={this.categoryOptions}
                 onChange={this.handleChange}/>
                 {/* Wod */}
-                <Form.Select label='Wod'
+                <Form.Select label={locale.wodLabel}
                 name='wod'
                 value={this.state.filter.wod}
                 options={this.wodOptions}
