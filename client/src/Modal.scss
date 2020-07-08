@@ -204,3 +204,13 @@ $zonazeroColor: #396236;
       }
     }
   }
+
+  @media (max-width: 767px) and (orientation: landscape) {
+    
+    .mainModal {
+      .mainModalContainer {
+        margin: 2em auto;
+      }
+    }
+
+  }
