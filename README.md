@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Mongo.Express.React.Node - Crossfit leaderboard :muscle::trophy:
+![Alt Text](https://github.com/pGarciaAndres/MernLeaderboard/blob/master/client/public/screenshot.png)
 
 ## Available Scripts
 
